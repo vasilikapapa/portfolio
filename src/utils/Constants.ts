@@ -1,4 +1,4 @@
-import { skill } from "../types/Skill";
+import { Skill } from "../types/Skill";
 import { Card } from "../types/Card";
 
 //Array of skill objects to display in the Skills section

@@ -8,7 +8,7 @@ import { FaCode, FaCogs, FaDatabase } from "react-icons/fa";
  * - Uses icons based on category
  * - Data comes from skillBoxes constant
  */
-export default function Skills(): JSX.Element {
+export default function Skills(): React.ReactElement {
   /**
    * Returns an icon based on the skill box title
    */

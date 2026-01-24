@@ -12,14 +12,14 @@ import { useNavigate } from "react-router-dom";
  *  - Description
  *  - Action button
  */
-export default function InfoCard(): JSX.Element {
+export default function InfoCard(): React.ReactElement {
   // Used to navigate between pages
   const navigate = useNavigate();
 
   /**
    * Returns an icon based on card title
    */
-  const getIcon = (title: string): JSX.Element | null => {
+  const getIcon = (title: string): React.ReactElement | null => {
     switch (title.toLowerCase()) {
       case "resume":
         return <FaFileAlt />;

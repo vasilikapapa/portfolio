@@ -9,7 +9,7 @@ import { FaDownload } from "react-icons/fa";
  * - Introduces you with a short message
  * - Optional profile image on the side
  */
-export default function Hero(): JSX.Element {
+export default function Hero(): React.ReactElement {
   return (
     <section className="hero" id="hero">
       {/* Left side: text content */}

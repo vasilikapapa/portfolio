@@ -6,7 +6,7 @@ import "./Footer.css";
  * - Shows copyright year automatically
  * - Shows social / contact links
  */
-export default function Footer(): JSX.Element {
+export default function Footer(): React.ReactElement {
   return (
     <footer className="footer">
       {/* Copyright text with current year */}

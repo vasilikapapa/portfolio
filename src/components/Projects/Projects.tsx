@@ -5,7 +5,7 @@ import "./Projects.css";
  * - Shown when user clicks "Projects"
  * - Displays a placeholder while projects are not ready
  */
-export default function Projects(): JSX.Element {
+export default function Projects(): React.ReactElement {
   return (
     <section className="projects-page">
       {/* Centered container */}

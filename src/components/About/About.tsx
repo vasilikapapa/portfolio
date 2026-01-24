@@ -1,7 +1,7 @@
 import "./About.css";
 import { FaDownload, FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 
-export default function About(): JSX.Element {
+export default function About(): React.ReactElement {
   return (
     <section className="about-page" id="about">
       <div className="about-card">

@@ -14,7 +14,7 @@ type Status = "idle" | "sending" | "sent" | "error";
  * - Shows form only when coming from InfoCards (?form=1)
  * - Uses Formspree to send emails without redirect
  */
-export default function Contact(): JSX.Element {
+export default function Contact(): React.ReactElement {
   // Read URL query params
   const [searchParams] = useSearchParams();
   const showForm = searchParams.get("form") === "1";

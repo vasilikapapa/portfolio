@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
  * - Provides navigation using React Router
  * - Stays visible across all pages
  */
-export default function Navbar(): JSX.Element {
+export default function Navbar(): React.ReactElement {
   return (
     <nav className="navbar">
       {/* Logo / identity section */}

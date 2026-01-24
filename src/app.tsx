@@ -9,7 +9,9 @@ import Projects from "./components/Projects/Projects";
 import About from "./components/About/About";
 import "./app.css";
 
-function App(): JSX.Element {
+
+
+function App(): React.ReactElement {
   return (
     <div className="page-background">
       <main className="page-container">

@@ -1,0 +1,120 @@
+/* Section wrapper */
+.skills {
+  padding: 0;
+}
+
+/* ========================= */
+/* Main skills container     */
+/* ========================= */
+.skills-wrapper {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadowSm);
+  padding: 18px;
+}
+
+/* ========================= */
+/* Section label (pseudo)     */
+/* ========================= */
+.skills-wrapper::before {
+  content: "Tech Stack";                 /* fake heading */
+  display: block;
+
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: rgba(16, 19, 26, 0.65);
+  margin-bottom: 12px;
+}
+
+/* Hide old visible title if still in markup */
+.skills-title {
+  display: none;
+}
+
+/* ========================= */
+/* Grid layout for cards      */
+/* ========================= */
+.skills-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* ========================= */
+/* Individual skill card      */
+/* ========================= */
+.skill-box {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Lift effect on hover */
+.skill-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.10);
+}
+
+/* ========================= */
+/* Card header                */
+/* ========================= */
+.skill-box-header {
+  background: rgba(37, 99, 235, 0.08);
+  border-bottom: 1px solid rgba(37, 99, 235, 0.18);
+
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-family: var(--mono);
+}
+
+/* Header title */
+.skill-box-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+/* Icon color */
+.skill-box-header svg {
+  color: var(--link);
+}
+
+/* ========================= */
+/* Custom bullet list         */
+/* ========================= */
+.skill-box ul {
+  list-style: none;        /* remove default bullets */
+  padding-left: 0;
+}
+
+.skill-box li {
+  position: relative;
+  padding-left: 14px;      /* space for custom bullet */
+}
+
+/* Custom bullet dot */
+.skill-box li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--link);
+}
+
+/* ========================= */
+/* Responsive layout          */
+/* ========================= */
+@media (max-width: 900px) {
+  .skills-boxes {
+    grid-template-columns: 1fr;
+  }
+}

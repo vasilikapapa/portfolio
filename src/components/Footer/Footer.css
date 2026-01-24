@@ -1,0 +1,49 @@
+/* =========================
+   Footer container
+   Stays at bottom when content is short
+========================= */
+.footer {
+  margin-top: auto;        /* Pushes footer to bottom in flex layouts */
+  padding: 20px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadowSm);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Container for footer links */
+.footer-links {
+  display: flex;
+  gap: 12px;
+}
+
+/* Individual footer links */
+.footer-links a {
+  color: var(--link);
+  text-decoration: none;
+  font-family: var(--mono);
+}
+
+/* Hover effect for links */
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Mobile layout
+========================= */
+@media (max-width: 700px) {
+  .footer {
+    flex-direction: column;   /* Stack items vertically */
+    text-align: center;
+  }
+}

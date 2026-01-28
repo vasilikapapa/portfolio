@@ -1,5 +1,5 @@
 import "./ProjectCard.css";
-import type { Project } from "../../types/Project";
+import type { Project } from "../../types/Projects";
 
 /**
  * Props for ProjectCard

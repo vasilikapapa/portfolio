@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import Hero from "../../components/Hero/Hero";
 import Skills from "../../components/Skills/Skills";
 import "./Home.css";
@@ -14,7 +15,7 @@ import "./Home.css";
  * - Sections are stacked vertically
  * - Each section is wrapped for consistent spacing
  */
-export default function Home(): JSX.Element {
+export default function Home(): React.ReactElement {
   return (
     <div className="home">
       {/* =========================

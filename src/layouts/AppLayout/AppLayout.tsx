@@ -16,7 +16,7 @@ import "./AppLayout.css";
  * - `app-bar` spans full width (edge-to-edge)
  * - `app-inner` constrains content to a max width and centers it
  */
-export default function AppLayout(): JSX.Element {
+export default function AppLayout(): React.ReactElement {
   return (
     <div className="app">
       {/* =========================

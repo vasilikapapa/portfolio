@@ -17,7 +17,7 @@ import ContactPage from "./pages/Contact/Contact";
  * - AppLayout is used as a layout route
  * - All pages render inside <Outlet /> from AppLayout
  */
-export default function App(): JSX.Element {
+export default function App(): React.ReactElement {
   return (
     <Routes>
       {/* Layout route */}

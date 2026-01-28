@@ -2,7 +2,7 @@ import "./Projects.css";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import { projects } from "../../utils/Constants";
 
-export default function Projects(): JSX.Element {
+export default function Projects(): React.ReactElement {
   return (
     <section className="projects">
       <header className="projects-header">

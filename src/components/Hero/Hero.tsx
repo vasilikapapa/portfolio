@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
  * - Quick facts replace a heavy info panel to keep the hero lightweight
  * - Buttons use consistent global styles defined in Hero.css
  */
-export default function Hero(): JSX.Element {
+export default function Hero(): React.ReactElement {
   return (
     <section className="hero">
       {/* =========================

@@ -22,7 +22,7 @@ type Props = {
  * - Content flows from title → description → tech → actions
  * - Buttons follow a FAANG-style hierarchy (code > live demo)
  */
-export default function ProjectCard({ project }: Props): JSX.Element {
+export default function ProjectCard({ project }: Props): React.ReactElement {
   return (
     <article className="project-card">
       {/* =========================

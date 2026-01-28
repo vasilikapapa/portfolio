@@ -4,15 +4,20 @@ import { FaCode, FaCogs, FaDatabase } from "react-icons/fa";
 
 /**
  * Skills component
- * - Displays grouped technical skills
- * - Uses icons based on category
- * - Data comes from skillBoxes constant
+ *
+ * Purpose:
+ * - Displays grouped technical skills (Frontend, Backend, Database & Tools)
+ * - Uses icons to visually distinguish each category
+ * - Data-driven via the `skillBoxes` constant for easy maintenance
  */
 export default function Skills(): React.ReactElement {
   /**
-   * Returns an icon based on the skill box title
+   * Returns an icon based on the skill category title
+   *
+   * This keeps icon logic separate from JSX
+   * and avoids repeating conditional logic in the render.
    */
-  const getIcon = (title: string) => {
+  const getIcon = (title: string): React.ReactElement | null => {
     switch (title.toLowerCase()) {
       case "frontend":
         return <FaCode size={18} />;
@@ -27,22 +32,36 @@ export default function Skills(): React.ReactElement {
 
   return (
     <section className="skills" id="skills">
-      {/* Outer container */}
+      {/* =========================
+          Outer container
+         ========================= */}
       <div className="skills-wrapper">
-        {/* Section heading */}
+        {/* 
+          Section heading
+          - Hidden visually via CSS
+          - Kept for accessibility and semantic structure
+        */}
         <h2 className="skills-title">&lt;/&gt; Skills</h2>
 
-        {/* Grid of skill cards */}
+        {/* =========================
+            Skills grid
+           ========================= */}
         <div className="skills-boxes">
           {skillBoxes.map((box) => (
-            <div className="skill-box" key={box.title}>
-              {/* Card header with icon and title */}
+            <div
+              key={box.title}
+              className={`
+                skill-box 
+                skill-${box.title.toLowerCase().replace(/[^a-z]+/g, "-")}
+              `}
+            >
+              {/* Card header: icon + category title */}
               <div className="skill-box-header">
                 {getIcon(box.title)}
                 <h3>{box.title}</h3>
               </div>
 
-              {/* List of skills */}
+              {/* List of individual skills */}
               <ul>
                 {box.items.map((item, index) => (
                   <li key={index}>{item}</li>

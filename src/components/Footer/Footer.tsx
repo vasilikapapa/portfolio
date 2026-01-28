@@ -2,33 +2,50 @@ import "./Footer.css";
 
 /**
  * Footer component
- * - Stays at the bottom of the page
- * - Shows copyright year automatically
- * - Shows social / contact links
+ *
+ * Purpose:
+ * - Displayed on every page via AppLayout
+ * - Provides secondary navigation and contact links
+ * - Kept intentionally minimal and unobtrusive (FAANG-style)
+ *
+ * Design notes:
+ * - Text is low-contrast to avoid competing with main content
+ * - Links are simple text links (no buttons)
+ * - Layout aligns perfectly with Navbar and main content
  */
 export default function Footer(): React.ReactElement {
   return (
     <footer className="footer">
-      {/* Copyright text with current year */}
-      <p>© {new Date().getFullYear()} Vasilika Papa</p>
+      {/* Copyright information with dynamic year */}
+      <p className="footer-copy">
+        © {new Date().getFullYear()} Vasilika Papa
+      </p>
 
-      {/* External and contact links */}
-      <div className="footer-links">
+      {/* Footer navigation links */}
+      <nav className="footer-links" aria-label="Footer links">
         {/* GitHub profile */}
-        <a href="https://github.com/" target="_blank" rel="noreferrer">
+        <a
+          href="https://github.com/vasilikapapa"
+          target="_blank"
+          rel="noreferrer"
+        >
           GitHub
         </a>
 
         {/* LinkedIn profile */}
-        <a href="https://github.com/vasilikapapa" target="_blank" rel="noreferrer">
+        <a
+          href="https://www.linkedin.com/in/vasilikapapa/"
+          target="_blank"
+          rel="noreferrer"
+        >
           LinkedIn
         </a>
 
-        {/* Email link */}
+        {/* Email contact */}
         <a href="mailto:vasilika.papa108@gmail.com">
           Email
         </a>
-      </div>
+      </nav>
     </footer>
   );
 }

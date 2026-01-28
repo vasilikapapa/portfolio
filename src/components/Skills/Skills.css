@@ -1,119 +1,135 @@
-/* Section wrapper */
+/* =========================
+   Skills section wrapper
+   ========================= */
 .skills {
+  /* No extra spacing – layout handled by parent sections */
   padding: 0;
 }
 
-/* ========================= */
-/* Main skills container     */
-/* ========================= */
+/* =========================
+   Main skills container
+   ========================= */
 .skills-wrapper {
-  background: var(--surface);
+  /* Internal spacing for the section */
+  padding: 20px;
+
+  /* Card-style container */
+  border-radius: 18px;
   border: 1px solid var(--border);
-  border-radius: 16px;
-  box-shadow: var(--shadowSm);
-  padding: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
 }
 
-/* ========================= */
-/* Section label (pseudo)     */
-/* ========================= */
+/* Remove decorative pseudo-label used in earlier iterations */
 .skills-wrapper::before {
-  content: "Tech Stack";                 /* fake heading */
-  display: block;
-
-  font-family: var(--mono);
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-
-  color: rgba(16, 19, 26, 0.65);
-  margin-bottom: 12px;
+  content: none;
 }
 
-/* Hide old visible title if still in markup */
+/* Visually hide title (kept in markup for accessibility) */
 .skills-title {
   display: none;
 }
 
-/* ========================= */
-/* Grid layout for cards      */
-/* ========================= */
+/* =========================
+   Grid layout for skill cards
+   ========================= */
 .skills-boxes {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+
+  /* Three equal-width columns */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
 }
 
-/* ========================= */
-/* Individual skill card      */
-/* ========================= */
+/* =========================
+   Individual skill card
+   ========================= */
 .skill-box {
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+
+  /* Dark card background */
+  background: rgba(2, 6, 23, 0.30);
+
   overflow: hidden;
+
+  /* Subtle lift animation */
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Lift effect on hover */
+/* Hover lift effect */
 .skill-box:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.10);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
 }
 
-/* ========================= */
-/* Card header                */
-/* ========================= */
+/* =========================
+   Skill card header
+   ========================= */
 .skill-box-header {
-  background: rgba(37, 99, 235, 0.08);
-  border-bottom: 1px solid rgba(37, 99, 235, 0.18);
+  padding: 12px 14px;
 
-  padding: 10px 12px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 
-  font-family: var(--mono);
+  /* Slight contrast from card body */
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
 }
 
-/* Header title */
+/* Icon color inside header */
+.skill-box-header svg {
+  color: rgba(248, 250, 252, 0.90);
+}
+
+/* Skill category title */
 .skill-box-header h3 {
   margin: 0;
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: var(--ink);
+
+  font-size: 0.9rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+
+  color: rgba(248, 250, 252, 0.92);
+
+  font-family: var(--mono);
+  text-transform: uppercase;
 }
 
-/* Icon color */
-.skill-box-header svg {
-  color: var(--link);
-}
-
-/* ========================= */
-/* Custom bullet list         */
-/* ========================= */
+/* =========================
+   Skills list
+   ========================= */
 .skill-box ul {
-  list-style: none;        /* remove default bullets */
-  padding-left: 0;
+  margin: 0;
+  padding: 12px 14px 14px;
+
+  /* Remove default bullets */
+  list-style: none;
 }
 
+/* Individual skill item */
 .skill-box li {
-  position: relative;
-  padding-left: 14px;      /* space for custom bullet */
+  margin: 0;
+  padding: 8px 0;
+
+  /* Subtle divider between items */
+  border-bottom: 1px dashed rgba(148, 163, 184, 0.16);
+
+  color: rgba(248, 250, 252, 0.72);
+  line-height: 1.45;
 }
 
-/* Custom bullet dot */
-.skill-box li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: var(--link);
+/* Remove divider from last item */
+.skill-box li:last-child {
+  border-bottom: none;
 }
 
-/* ========================= */
-/* Responsive layout          */
-/* ========================= */
+/* =========================
+   Responsive layout
+   ========================= */
 @media (max-width: 900px) {
+  /* Stack skill cards vertically on small screens */
   .skills-boxes {
     grid-template-columns: 1fr;
   }

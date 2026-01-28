@@ -1,5 +1,7 @@
 import { Skill } from "../types/Skill";
 import { Card } from "../types/Card";
+import type { Project } from "../types/Projects";
+
 
 //Array of skill objects to display in the Skills section
 export const skillBoxes: Skill[] = [
@@ -35,4 +37,30 @@ export const cards: Card[] = [
         description: "Let's get in touch!",
         buttonText: "Contact",
     },
+];
+
+// Projects shown on the Projects page
+export const projects: Project[] = [
+  {
+    id: "workout-app",
+    title: "Workout App",
+    subtitle: "Mobile app (Expo) + API",
+    description:
+      "Workout planner with routines and progress tracking. Built with a clean UI and scalable structure.",
+    tech: ["React Native", "Expo", "TypeScript", "REST API"],
+    image: "images/project-workout.jpeg",
+    // liveUrl: "https://...",  
+    repoUrl: "https://github.com/vasilikapapa/workout-app"
+  },
+  {
+    id: "restaurant-website",
+    title: "Restaurant Website",
+    subtitle: "Landing page + menu layout",
+    description:
+      "Restaurant website with hero, navigation, menu sections, and CTAs. Designed for a clean Pinterest-style feel.",
+    tech: ["React", "Vite", "TypeScript", "CSS"],
+    image: "/images/project-restaurant.jpg",
+    liveUrl:"https://restaurant-website-nine-gold.vercel.app/",
+    repoUrl:"https://github.com/vasilikapapa/restaurant-website"
+  },
 ];

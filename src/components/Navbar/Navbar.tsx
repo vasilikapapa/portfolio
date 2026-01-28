@@ -1,51 +1,82 @@
 import React from "react";
 import "./Navbar.css";
 import { Home, User, FileText, Mail } from "lucide-react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 /**
  * Navbar component
- * - Displays site title and role
- * - Provides navigation using React Router
- * - Stays visible across all pages
+ *
+ * Purpose:
+ * - Provides primary site navigation
+ * - Displays developer name and role
+ * - Remains visible across all pages via AppLayout
+ *
+ * Technical notes:
+ * - Uses NavLink to automatically apply active styles
+ * - Icons improve scannability without overpowering text
+ * - Active route styling handled via `nav-active` class
  */
 export default function Navbar(): React.ReactElement {
   return (
     <nav className="navbar">
-      {/* Logo / identity section */}
+      {/* =========================
+          Logo / identity section
+         ========================= */}
       <div className="logo">
+        {/* Developer name */}
         <h1>Vasilika Papa</h1>
+
+        {/* Professional role */}
         <span>Full Stack Developer</span>
       </div>
 
-      {/* Navigation links */}
+      {/* =========================
+          Primary navigation links
+         ========================= */}
       <ul className="nav-links">
-        {/* Home page */}
+        {/* Home route (exact match required) */}
         <li>
-          <Link to="/">
-            <Home size={18} /> Home
-          </Link>
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) => (isActive ? "nav-active" : "")}
+          >
+            <Home size={18} />
+            Home
+          </NavLink>
         </li>
 
         {/* About page */}
         <li>
-          <Link to="/about">
-            <User size={18} /> About Me
-          </Link>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => (isActive ? "nav-active" : "")}
+          >
+            <User size={18} />
+            About Me
+          </NavLink>
         </li>
 
         {/* Projects page */}
         <li>
-          <Link to="/projects">
-            <FileText size={18} /> Projects
-          </Link>
+          <NavLink
+            to="/projects"
+            className={({ isActive }) => (isActive ? "nav-active" : "")}
+          >
+            <FileText size={18} />
+            Projects
+          </NavLink>
         </li>
 
         {/* Contact page */}
         <li>
-          <Link to="/contact">
-            <Mail size={18} /> Contact
-          </Link>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) => (isActive ? "nav-active" : "")}
+          >
+            <Mail size={18} />
+            Contact
+          </NavLink>
         </li>
       </ul>
     </nav>

@@ -1,0 +1,56 @@
+/* =========================
+   Root app wrapper
+   ========================= */
+.app {
+  /* Ensure app always fills viewport height */
+  min-height: 100vh;
+
+  /* 
+    Layered background:
+    - Two subtle radial highlights for depth
+    - Vertical gradient for dark UI base
+  */
+  background:
+    radial-gradient(
+      900px 520px at 20% 10%,
+      rgba(96, 165, 250, 0.18),
+      transparent 60%
+    ),
+    radial-gradient(
+      760px 420px at 80% 20%,
+      rgba(167, 139, 250, 0.12),
+      transparent 60%
+    ),
+    linear-gradient(180deg, var(--bg), var(--bg2));
+}
+
+/* =========================
+   Centered content wrapper
+   ========================= */
+.app-inner {
+  /* Full width but constrained for readability */
+  width: 100%;
+  max-width: 1100px;
+
+  /* Horizontally center content */
+  margin: 0 auto;
+
+  /* Side padding for small screens */
+  padding: 0 20px;
+}
+
+/* =========================
+   Full-bleed bars
+   ========================= */
+.app-bar {
+  /* Allows navbar and footer to span edge-to-edge */
+  width: 100%;
+}
+
+/* =========================
+   Main page content area
+   ========================= */
+.app-main {
+  /* Vertical breathing room between navbar and footer */
+  padding: 48px 0;
+}

@@ -1,7 +1,122 @@
-/* src/index.css */
+/* =========================
+   Global Theme (Cohesive Dark)
+   ========================= */
+:root {
+  /* =========================
+     Font stacks
+     ========================= */
 
-/* You can add global styles here */
+  /* Primary UI / content font */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
+  /* Monospace font for code, labels, metadata */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  /* =========================
+     Background colors
+     ========================= */
+
+  /* Base page background */
+  --bg: #070b14;
+
+  /* Secondary background (used in gradients) */
+  --bg2: #0b1220;
+
+  /* =========================
+     Surface colors (cards / sections)
+     ========================= */
+
+  /* Primary card surface */
+  --surface: rgba(17, 24, 39, 0.70);
+
+  /* Secondary / lighter card surface */
+  --surface2: rgba(17, 24, 39, 0.50);
+
+  /* Tertiary surface for deep contrast */
+  --surface3: rgba(2, 6, 23, 0.45);
+
+  /* =========================
+     Text colors
+     ========================= */
+
+  /* Main readable text */
+  --ink: rgba(248, 250, 252, 0.94);
+
+  /* Muted / secondary text */
+  --muted: rgba(248, 250, 252, 0.62);
+
+  /* =========================
+     Borders & shadows
+     ========================= */
+
+  /* Default subtle border */
+  --border: rgba(148, 163, 184, 0.16);
+
+  /* Stronger border for emphasis */
+  --borderStrong: rgba(148, 163, 184, 0.24);
+
+  /* Soft elevation shadow */
+  --shadowSm: 0 14px 30px rgba(0, 0, 0, 0.32);
+
+  /* High elevation / hover shadow */
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.50);
+
+  /* =========================
+     Accent color system
+     ========================= */
+
+  /* Primary accent (blue — intentionally no orange) */
+  --accent: #60a5fa;
+
+  /* Soft accent background */
+  --accentSoft: rgba(96, 165, 250, 0.14);
+
+  /* Accent border color */
+  --accentBorder: rgba(96, 165, 250, 0.30);
+
+  /* =========================
+     Legacy variable aliases
+     ========================= */
+
+  /* Used by older CSS files */
+  --mono: var(--font-mono);
+  --serif: var(--font-sans);
+  --link: var(--accent);
+}
+
+/* =========================
+   Global resets
+   ========================= */
+* {
+  /* Ensure consistent box sizing across components */
+  box-sizing: border-box;
+}
+
+/* =========================
+   Base document styles
+   ========================= */
+html,
 body {
   margin: 0;
-  font-family: sans-serif;
+  padding: 0;
+
+  /* Apply global background and text color */
+  background: var(--bg);
+  color: var(--ink);
+
+  /* Default font */
+  font-family: var(--font-sans);
+}
+
+/* =========================
+   Link styling
+   ========================= */
+a {
+  /* Use accent color for links */
+  color: var(--link);
+
+  /* Remove default underline */
+  text-decoration: none;
 }

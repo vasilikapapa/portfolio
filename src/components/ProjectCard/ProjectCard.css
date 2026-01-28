@@ -1,0 +1,140 @@
+.project-card {
+  border-radius: 18px;
+  overflow: hidden;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadowSm);
+
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(96, 165, 250, 0.28);
+}
+
+/* Image */
+.project-media {
+  position: relative;
+  height: 220px;
+  background: rgba(2, 6, 23, 0.55);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.05) contrast(1.02);
+}
+
+/* Overlay so light screenshots look good on dark UI */
+.project-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 6, 23, 0.05) 0%,
+    rgba(2, 6, 23, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+/* Body */
+.project-body {
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-title {
+  margin: 0;
+  font-size: 1.12rem;
+  font-weight: 850;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.project-subtitle {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(248, 250, 252, 0.62);
+}
+
+.project-desc {
+  margin: 0;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* Tech pills */
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.pill {
+  padding: 7px 10px;
+  border-radius: 999px;
+
+  font-family: var(--mono);
+  font-size: 0.78rem;
+
+  color: rgba(248, 250, 252, 0.78);
+  background: rgba(2, 6, 23, 0.40);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+/* Actions */
+.project-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.project-actions .btn {
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  cursor: pointer;
+
+  background: rgba(248, 250, 252, 0.92);
+  border: 1px solid rgba(248, 250, 252, 0.18);
+  color: rgba(15, 23, 42, 0.92);
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.project-actions .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  background: rgba(248, 250, 252, 0.98);
+}
+
+.project-actions .btn.primary {
+  background: rgba(96, 165, 250, 0.30);
+  border-color: rgba(96, 165, 250, 0.35);
+  color: rgba(248, 250, 252, 0.95);
+}
+
+.project-actions .btn.primary:hover {
+  background: rgba(96, 165, 250, 0.38);
+}
+
+.project-actions .btn[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

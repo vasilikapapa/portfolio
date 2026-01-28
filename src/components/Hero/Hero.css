@@ -1,125 +1,144 @@
 /* =========================
-   Hero card container
-========================= */
+   Hero container
+   ========================= */
 .hero {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-
-  padding: 22px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /* Two-column layout:
+     - Left: text content
+     - Right: profile image */
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: 22px;
 
-  position: relative;
-  overflow: hidden;
-}
+  /* Vertically align text and image */
+  align-items: center;
 
-/* Top label like a pinned post */
-.hero::before {
-  content: "PINNED • INTRO";
-  position: absolute;
-  top: 14px;
-  left: 16px;
-
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  color: rgba(16, 19, 26, 0.55);
-
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(124, 58, 237, 0.10);
-  border: 1px solid rgba(124, 58, 237, 0.20);
-}
-
-/* Decorative glow in top-right corner */
-.hero::after {
-  content: "";
-  position: absolute;
-  right: -80px;
-  top: -80px;
-  width: 260px;
-  height: 260px;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.35), transparent 60%);
-  opacity: 0.55;
-  pointer-events: none;
+  /* Card styling */
+  padding: 28px;
+  border-radius: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 }
 
 /* =========================
-   Text content
-========================= */
-.hero-text {
-  max-width: 580px;
-  padding-top: 20px; /* space for pinned label */
+   Left column (text content)
+   ========================= */
+.hero-left {
+  /* Stack text elements vertically */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* Headline */
-.hero-text h2 {
-  margin: 0 0 10px;
-  font-size: 2.1rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  font-family: var(--serif); /* blog-style headline */
-}
-
-/* Subtitle text */
-.hero-text p {
+/* Small role label above headline */
+.hero-eyebrow {
   margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.75;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--muted);
 }
 
-/* =========================
-   Image container
-========================= */
-.hero-image {
-  width: 170px;
-  height: 170px;
-
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--borderStrong);
-  flex-shrink: 0;
-  position: relative;
-
-  /* Gradient placeholder behind image */
-  background: linear-gradient(
-    135deg,
-    rgba(37, 99, 235, 0.14),
-    rgba(124, 58, 237, 0.14)
-  );
+/* Main headline */
+.hero-title {
+  margin: 0;
+  font-size: 2.55rem;
+  font-weight: 850;
+  letter-spacing: -0.03em;
+  color: var(--ink);
 }
 
-/* Image fills the container */
-.hero-image img {
-  position: absolute;
-  inset: 0;
+/* Short professional description */
+.hero-lead {
+  margin: 0;
+  max-width: 62ch; /* keeps line length readable */
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* =========================
+   Call-to-action buttons
+   ========================= */
+.hero-actions {
+  margin-top: 8px;
+
+  /* Layout buttons in a row with wrapping */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Buttons use global .btn styles
+   (defined elsewhere for consistency) */
+.btn {
+  /* intentionally empty */
+}
+
+/* =========================
+   Quick facts row
+   ========================= */
+.hero-facts {
+  margin: 10px 0 0;
+  padding: 0;
+
+  /* Remove default list styling */
+  list-style: none;
+
+  /* Display facts as inline pills */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: rgba(248, 250, 252, 0.70);
+}
+
+/* Individual fact pill */
+.hero-facts li {
+  padding: 8px 10px;
+  border-radius: 999px;
+
+  background: rgba(2, 6, 23, 0.35);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+/* =========================
+   Profile image container
+   ========================= */
+.hero-photo {
+  /* Rounded image card */
+  border-radius: 18px;
+  overflow: hidden;
+
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(2, 6, 23, 0.35);
+  box-shadow: var(--shadowSm);
+
+  /* Ensures visible height even before image loads */
+  min-height: 320px;
+}
+
+/* Image fills container */
+.hero-photo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
+  object-fit: cover;
 }
 
 /* =========================
    Responsive layout
-========================= */
+   ========================= */
 @media (max-width: 900px) {
+  /* Stack text and image vertically on smaller screens */
   .hero {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 1fr;
   }
 
-  .hero-text {
-    max-width: 100%;
-  }
-
-  .hero-image {
-    width: 100%;
-    height: 240px;
+  /* Reduce image height on mobile */
+  .hero-photo {
+    min-height: 260px;
   }
 }

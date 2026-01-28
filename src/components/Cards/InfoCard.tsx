@@ -1,24 +1,14 @@
 import "./InfoCard.css";
 import { cards } from "../../utils/Constants";
 import { FaFileAlt, FaProjectDiagram, FaEnvelope } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 /**
  * InfoCard section
- * Displays cards like: Resume, Projects, Contact
- * Each card has:
- *  - Icon
- *  - Title
- *  - Description
- *  - Action button
+ * - Quick links: Resume, Projects, Contact
+ * - FAANG-style: clear actions, minimal friction
  */
 export default function InfoCard(): React.ReactElement {
-  // Used to navigate between pages
-  const navigate = useNavigate();
-
-  /**
-   * Returns an icon based on card title
-   */
   const getIcon = (title: string): React.ReactElement | null => {
     switch (title.toLowerCase()) {
       case "resume":
@@ -32,60 +22,54 @@ export default function InfoCard(): React.ReactElement {
     }
   };
 
-  /**
-   * Handles what happens when a card button is clicked
-   */
-  const handleClick = (title: string) => {
+  const getAction = (title: string, buttonText: string): React.ReactElement => {
     const t = title.toLowerCase();
 
-    // Download resume PDF
+    // ✅ Resume: keep as a real link (reliable)
     if (t === "resume") {
-      const a = document.createElement("a");
-      a.href = "/resume.pdf"; 
-      a.download = "Vasilika_Papa_Resume.pdf";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      return;
+      return (
+        <a
+          className="info-btn"
+          href="/files/Vasilika-Papa-Resume.pdf"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {buttonText}
+        </a>
+      );
     }
 
-    // Go to Projects page
+    // ✅ Projects: route link
     if (t === "projects") {
-      navigate("/projects");
-      return;
+      return (
+        <Link className="info-btn" to="/projects">
+          {buttonText}
+        </Link>
+      );
     }
 
-    // Go to Contact page and show form
-    if (t === "contact") {
-      navigate("/contact?form=1");
-      return;
-    }
+    // ✅ Contact: route link
+    return (
+      <Link className="info-btn" to="/contact">
+        {buttonText}
+      </Link>
+    );
   };
 
   return (
     <section className="info-cards">
       <div className="info-grid">
-        {/* Loop through all card data */}
         {cards.map((card) => (
           <div className="info-card" key={card.title}>
-            {/* Card header: icon, title, button */}
             <div className="info-card-header">
-              <div className="info-icon-wrapper">
-                {getIcon(card.title)}
-              </div>
+              <div className="info-icon-wrapper">{getIcon(card.title)}</div>
 
               <h3>{card.title}</h3>
 
-              <button
-                className="info-btn"
-                type="button"
-                onClick={() => handleClick(card.title)}
-              >
-                {card.buttonText}
-              </button>
+              {/* Action */}
+              {getAction(card.title, card.buttonText)}
             </div>
 
-            {/* Card description */}
             <div className="info-card-body">
               <p>{card.description}</p>
             </div>

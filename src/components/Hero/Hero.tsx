@@ -1,33 +1,75 @@
-import React from "react";
 import "./Hero.css";
-import { FaDownload } from "react-icons/fa";
-// import myImage from "../../images/Profile.jpg";
+import { Link } from "react-router-dom";
 
 /**
  * Hero component
- * - Top section of the page
- * - Introduces you with a short message
- * - Optional profile image on the side
+ *
+ * Purpose:
+ * - Acts as the primary introduction on the Home page
+ * - Clearly communicates role, focus, and tech stack
+ * - Provides strong CTAs for Projects, Contact, and Resume
+ *
+ * Design decisions:
+ * - Split layout: text on the left, profile image on the right
+ * - Quick facts replace a heavy info panel to keep the hero lightweight
+ * - Buttons use consistent global styles defined in Hero.css
  */
-export default function Hero(): React.ReactElement {
+export default function Hero(): JSX.Element {
   return (
-    <section className="hero" id="hero">
-      {/* Left side: text content */}
-      <div className="hero-text">
-        <h2>Hi, I'm Vasilika!</h2>
-        <p>
-          Full Stack Developer passionate about building clean,
-          scalable, and user-focused applications.
+    <section className="hero">
+      {/* =========================
+          Left column: text content
+         ========================= */}
+      <div className="hero-left">
+        {/* Eyebrow label for role */}
+        <p className="hero-eyebrow">Full Stack Developer</p>
+
+        {/* Main headline */}
+        <h1 className="hero-title">Hi, I’m Vasilika.</h1>
+
+        {/* Short professional summary */}
+        <p className="hero-lead">
+          I build clean, scalable web and mobile applications with React + TypeScript
+          and modern backend APIs.
         </p>
+
+        {/* Call-to-action buttons */}
+        <div className="hero-actions">
+          {/* Navigate to Projects page */}
+          <Link className="btn primary" to="/projects">
+            View Projects
+          </Link>
+
+          {/* Navigate to Contact page with form visible */}
+          <Link className="btn" to="/contact?form=1">
+            Contact
+          </Link>
+
+          {/* Open resume PDF in a new tab */}
+          <a
+            className="btn ghost"
+            href="/files/Vasilika-Papa-Resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Resume
+          </a>
+        </div>
+
+        {/* Quick personal facts (compact and readable) */}
+        <ul className="hero-facts">
+          <li>📍 United States</li>
+          <li>🎓 M.S. CS (UMSL)</li>
+          <li>⚙️ React • TypeScript • Java</li>
+        </ul>
       </div>
 
-      {/* Right side: image area (optional) */}
-      <div className="hero-image">
-        {/* 
-          Uncomment when you add a profile image:
-
-          <img src={myImage} alt="Vasilika Papa" />
-        */}
+      {/* =========================
+          Right column: profile image
+         ========================= */}
+      <div className="hero-photo" aria-label="Profile photo">
+        {/* Profile image stored in public/images */}
+        <img src="/images/profile.jpg" alt="Vasilika Papa" />
       </div>
     </section>
   );

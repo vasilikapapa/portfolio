@@ -1,96 +1,38 @@
-:root {
-  /* Base */
-  --bg: #0b1020;
-  --bg2: #0e1630;
-  --surface: rgba(255, 255, 255, 0.92);
-  --surfaceSolid: #ffffff;
-
-  --ink: #10131a;
-  --muted: #4a5568;
-
-  --border: rgba(16, 19, 26, 0.12);
-  --borderStrong: rgba(16, 19, 26, 0.18);
-
-  /* Accent */
-  --link: #2563eb;
-  --accent: #7c3aed;
-  --accent2: #22c55e;
-
-  --shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
-  --shadowSm: 0 10px 25px rgba(0, 0, 0, 0.12);
-
-  /* Typography */
-  --serif: ui-serif, Georgia, "Times New Roman", serif;
-  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  overflow-x: hidden;
-  background: var(--bg);
-}
-
-/* Tech blog background using image */
+/* =========================
+   Page background wrapper
+   ========================= */
 .page-background {
+  /* Ensure the page fills the full viewport height */
   min-height: 100vh;
-  color: var(--ink);
-  font-family: var(--sans);
 
-  background-image: url("/src/images/background.png"); /* change if needed */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  /* Center the main container horizontally */
+  display: flex;
+  justify-content: center;
 
-  position: relative;
+  /* Outer padding for small screens */
+  padding: 40px 16px;
 }
 
-/* Dark overlay for readability (optional, set a color if you want) */
-.page-background::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  /* example:
-  background: rgba(255, 255, 255, 0.25);
-  */
-}
-
-/* Grid overlay (optional, add background-image if you want grid lines) */
-.page-background::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.18;
-  background-size: 42px 42px;
-
-  /* example grid:
-  background-image:
-    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-  */
-}
-
-/* Main centered layout */
+/* =========================
+   Main page container
+   ========================= */
 .page-container {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 26px 18px 18px;
+  /* Full width up to a readable max */
+  width: 100%;
+  max-width: 1100px;
 
+  /* Vertical layout for navbar, content, and footer */
   display: flex;
   flex-direction: column;
-  min-height: 100vh;    /* allows footer to sit at bottom */
-  box-sizing: border-box;
-}
-/* This is the body area between navbar and footer */
-.page-body {
-  flex: 1;                        /* takes remaining space */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;        /* centers vertically when short */
+
+  /* Space between major layout blocks */
   gap: 18px;
+}
+
+/* =========================
+   Page body
+   ========================= */
+.page-body {
+  /* Grow to fill available space and push footer down */
+  flex: 1;
 }

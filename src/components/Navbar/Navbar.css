@@ -1,102 +1,90 @@
-/* ========================= */
-/* Navbar main container     */
-/* ========================= */
+/* =========================
+   Navbar container
+   ========================= */
 .navbar {
-  position: sticky;        /* stays visible when scrolling */
-  top: 0;
-  z-index: 100;            /* stays above other content */
+  /* Span full width of the viewport */
+  width: 100%;
 
-  margin: 0;
-  padding: 14px 14px;
+  /* Vertical spacing inside the navbar */
+  padding: 18px 0;
 
-  /* Glass / frosted effect */
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow: var(--shadowSm);
-  backdrop-filter: blur(10px);
+  /* Background intentionally transparent
+     (handled by full-bleed layout wrapper) */
+  background: transparent;
 
-  /* Layout */
+  /* Subtle divider separating navbar from page content */
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+
+  /* Horizontal layout for logo and navigation */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* ========================= */
-/* Logo text styles          */
-/* ========================= */
+/* =========================
+   Logo / identity
+   ========================= */
 .logo h1 {
+  /* Remove default margin for tighter alignment */
   margin: 0;
-  font-size: 1.25rem;
-  letter-spacing: 0.2px;
+
+  /* Primary identity text */
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--ink);
 }
 
+/* Secondary role text under name */
 .logo span {
-  display: block;
-  margin-top: 2px;
   font-size: 0.85rem;
   color: var(--muted);
-  font-family: var(--mono); /* developer / tech vibe */
+  font-family: var(--mono);
 }
 
-/* ========================= */
-/* Navigation links list     */
-/* ========================= */
+/* =========================
+   Navigation links list
+   ========================= */
 .nav-links {
-  list-style: none;       /* remove bullets */
+  /* Display links in a horizontal row */
   display: flex;
-  gap: 10px;
+  gap: 12px;
+
+  /* Remove default list styling */
+  list-style: none;
   margin: 0;
   padding: 0;
-  align-items: center;
 }
 
-/* Individual link style */
+/* =========================
+   Individual navigation link
+   ========================= */
 .nav-links li a {
-  text-decoration: none;
-  color: var(--ink);
-  font-family: var(--mono);
-  font-size: 0.88rem;
-
+  /* Align icon and text inline */
   display: inline-flex;
   align-items: center;
   gap: 6px;
 
-  padding: 8px 10px;
+  /* Clickable area padding */
+  padding: 8px 12px;
   border-radius: 10px;
 
+  /* Typography */
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  color: var(--ink);
+
+  /* Invisible border to avoid layout shift on hover */
   border: 1px solid transparent;
-  transition: 
-    background 0.15s ease,
-    border-color 0.15s ease,
-    color 0.15s ease;
+
+  /* Smooth hover transition */
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
-/* Hover effect */
+/* Hover state for navigation links */
 .nav-links li a:hover {
-  background: rgba(37, 99, 235, 0.10);
-  border-color: rgba(37, 99, 235, 0.22);
-  color: var(--link);
-}
+  /* Subtle accent background */
+  background: var(--accent-soft);
 
-/* Click (active) effect */
-.nav-links li a:active {
-  background: rgba(37, 99, 235, 0.16);
-}
-
-/* ========================= */
-/* Mobile layout adjustments */
-/* ========================= */
-@media (max-width: 720px) {
-  .navbar {
-    flex-direction: column;    /* stack logo and links */
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .nav-links {
-    flex-wrap: wrap;           /* wrap links to new line if needed */
-  }
+  /* Highlight border on hover */
+  border-color: rgba(59, 130, 246, 0.35);
 }

@@ -136,7 +136,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 42px;            /* ✅ consistent height */
+  height: 42px;           
   padding: 0 14px;
   border-radius: 12px;
 
@@ -227,7 +227,7 @@
 
 /* Bigger QR for real scanning */
 .project-qr img {
-  width: 120px;          /* ⬅️ BIGGER */
+  width: 120px;         
   height: 120px;
   border-radius: 14px;
 

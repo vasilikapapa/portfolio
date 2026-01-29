@@ -150,13 +150,12 @@ export default function About(): React.ReactElement {
           <div className="about-item">
             <div className="about-item-top">
               <h3>Web Restaurant Application — Full Stack Web Project (React, TypeScript)</h3>
-              {/* Replace # with your real links */}
               <span className="about-meta">
-                <a className="about-mini-link" href="#" target="_blank" rel="noreferrer">
+                <a className="about-mini-link" href="https://github.com/vasilikapapa/restaurant-website" target="_blank" rel="noreferrer">
                   View Code
                 </a>
                 <span className="about-dot">•</span>
-                <a className="about-mini-link" href="#" target="_blank" rel="noreferrer">
+                <a className="about-mini-link" href="https://restaurant-website-nine-gold.vercel.app/" target="_blank" rel="noreferrer">
                   Live Demo
                 </a>
               </span>
@@ -173,11 +172,11 @@ export default function About(): React.ReactElement {
               <h3>Mobile Workout App — Mobile Application (React Native, Expo)</h3>
           
               <span className="about-meta">
-                <a className="about-mini-link" href="#" target="_blank" rel="noreferrer">
+                <a className="about-mini-link" href="https://github.com/vasilikapapa/workout-app" target="_blank" rel="noreferrer">
                   View Code
                 </a>
                 <span className="about-dot">•</span>
-                <a className="about-mini-link" href="#" target="_blank" rel="noreferrer">
+                <a className="about-mini-link" href="https://expo.dev/preview/update?message=Login%26Register+Image+Background&updateRuntimeVersion=1.0.0&createdAt=2026-01-29T15%3A00%3A54.678Z&slug=exp&projectId=3a9b7182-6fa1-43e2-8a52-af08253b3eb6&group=d10fbf89-7f85-4bf4-940a-f07e4293bb89" target="_blank" rel="noreferrer">
                   Live Demo
                 </a>
               </span>
@@ -194,11 +193,11 @@ export default function About(): React.ReactElement {
               <h3>Portfolio Website — Personal Project (React, TypeScript)</h3>
          
               <span className="about-meta">
-                <a className="about-mini-link" href="#" target="_blank" rel="noreferrer">
+                <a className="about-mini-link" href="https://github.com/vasilikapapa/portfolio" target="_blank" rel="noreferrer">
                   View Code
                 </a>
                 <span className="about-dot">•</span>
-                <a className="about-mini-link" href="#" target="_blank" rel="noreferrer">
+                <a className="about-mini-link" href="https://portfolio-psi-cyan-67.vercel.app/" target="_blank" rel="noreferrer">
                   Live Demo
                 </a>
               </span>

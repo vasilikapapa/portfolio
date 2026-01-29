@@ -2,16 +2,21 @@
   padding: 0;
 }
 
+/* =========================
+   Card container
+   ========================= */
 .about-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #ffffff; /* stronger contrast */
+  border: 1px solid #e5e7eb;
   border-radius: 16px;
-  box-shadow: var(--shadowSm);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
   overflow: hidden;
-  padding: 22px;
+  padding: 24px;
 }
 
-/* Header */
+/* =========================
+   Header
+   ========================= */
 .about-header {
   display: flex;
   justify-content: space-between;
@@ -23,18 +28,20 @@
   margin: 0;
   font-family: var(--serif);
   font-size: 2rem;
-  font-weight: 900;
-  color: var(--ink);
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  color: #111827; /* DARK text */
 }
 
 .about-role {
   margin: 6px 0 12px;
-  color: var(--muted);
+  color: #374151; /* readable gray */
   font-family: var(--mono);
   font-size: 0.95rem;
 }
 
+/* =========================
+   Links
+   ========================= */
 .about-links {
   display: flex;
   flex-wrap: wrap;
@@ -46,7 +53,7 @@
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  color: var(--link);
+  color: #1d4ed8; /* visible blue */
   font-family: var(--mono);
   font-size: 0.9rem;
 }
@@ -55,17 +62,20 @@
   text-decoration: underline;
 }
 
+/* =========================
+   Download button
+   ========================= */
 .about-download {
   display: inline-flex;
   align-items: center;
   gap: 8px;
 
-  padding: 9px 12px;
+  padding: 10px 14px;
   border-radius: 12px;
 
-  background: rgba(37, 99, 235, 0.10);
-  border: 1px solid rgba(37, 99, 235, 0.22);
-  color: var(--link);
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
 
   font-family: var(--mono);
   font-size: 0.9rem;
@@ -74,19 +84,24 @@
 }
 
 .about-download:hover {
-  background: rgba(37, 99, 235, 0.16);
-  border-color: rgba(37, 99, 235, 0.35);
+  background: #dbeafe;
+  border-color: #93c5fd;
 }
 
+/* =========================
+   Divider
+   ========================= */
 .about-divider {
   height: 1px;
-  background: var(--border);
-  margin: 18px 0;
+  background: #e5e7eb;
+  margin: 20px 0;
 }
 
-/* Sections */
+/* =========================
+   Sections
+   ========================= */
 .about-section {
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .about-section-title {
@@ -95,47 +110,53 @@
   font-size: 0.85rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(16, 19, 26, 0.65);
+  color: #6b7280; /* darker than before */
 }
 
 .about-text {
   margin: 0;
-  color: var(--muted);
+  color: #1f2937; /* MAIN readable text */
   line-height: 1.7;
 }
 
+/* =========================
+   Skills grid
+   ========================= */
 .about-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 14px;
 }
 
 .about-block {
-  border: 1px solid var(--border);
+  border: 1px solid #e5e7eb;
   border-radius: 14px;
-  padding: 14px;
-  background: rgba(255, 255, 255, 0.96);
+  padding: 16px;
+  background: #f9fafb;
 }
 
 .about-block h3 {
   margin: 0 0 10px;
   font-family: var(--serif);
-  color: var(--ink);
+  color: #111827;
 }
 
 .about-block ul {
   margin: 0;
   padding-left: 18px;
-  color: var(--muted);
+  color: #374151;
   line-height: 1.6;
 }
 
+/* =========================
+   Experience / Projects items
+   ========================= */
 .about-item {
-  border: 1px solid var(--border);
+  border: 1px solid #e5e7eb;
   border-radius: 14px;
-  padding: 14px;
-  background: rgba(255, 255, 255, 0.96);
-  margin-bottom: 12px;
+  padding: 16px;
+  background: #f9fafb;
+  margin-bottom: 14px;
 }
 
 .about-item-top {
@@ -148,12 +169,12 @@
 .about-item h3 {
   margin: 0;
   font-family: var(--serif);
-  color: var(--ink);
+  color: #111827;
   font-size: 1.05rem;
 }
 
 .about-meta {
-  color: rgba(16, 19, 26, 0.55);
+  color: #6b7280;
   font-family: var(--mono);
   font-size: 0.85rem;
 }
@@ -161,11 +182,13 @@
 .about-item ul {
   margin: 10px 0 0;
   padding-left: 18px;
-  color: var(--muted);
+  color: #374151;
   line-height: 1.6;
 }
 
-/* Responsive */
+/* =========================
+   Responsive
+   ========================= */
 @media (max-width: 900px) {
   .about-header {
     flex-direction: column;

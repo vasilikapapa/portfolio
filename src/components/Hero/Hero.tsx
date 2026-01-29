@@ -48,7 +48,7 @@ export default function Hero(): React.ReactElement {
           {/* Open resume PDF in a new tab */}
           <a
             className="btn ghost"
-            href="/files/Vasilika-Papa-Resume.pdf"
+            href="/Vasilika_Papa_Resume.pdf"
             target="_blank"
             rel="noreferrer"
           >
@@ -67,10 +67,10 @@ export default function Hero(): React.ReactElement {
       {/* =========================
           Right column: profile image
          ========================= */}
-      <div className="hero-photo" aria-label="Profile photo">
+      {/* <div className="hero-photo" aria-label="Profile photo"> */}
         {/* Profile image stored in public/images */}
-        <img src="/images/profile.jpg" alt="Vasilika Papa" />
-      </div>
+        {/* <img src="/images/profile.jpg" alt="Vasilika Papa" />
+      </div> */}
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import "./ProjectCard.css";
 import type { Project } from "../../types/Projects";
+import { useMemo, useState } from "react";
 
 /**
  * Props for ProjectCard
@@ -21,23 +22,49 @@ type Props = {
  * - Image is placed at the top for quick visual context
  * - Content flows from title → description → tech → actions
  * - Buttons follow a FAANG-style hierarchy (code > live demo)
+ * - Mobile-only demos open link on mobile; show QR panel on desktop
  */
 export default function ProjectCard({ project }: Props): React.ReactElement {
+  /**
+   * Desktop-only: toggle a "Live Demo" panel for mobile-only apps
+   * - closed by default to keep the card clean
+   */
+  const [showMobilePanel, setShowMobilePanel] = useState(false);
+
+  /**
+   * Detect mobile-ish screens (simple + good enough for this use case)
+   * - If on mobile, we open the link directly
+   * - If on desktop, we show the QR panel
+   */
+  const isMobile = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(max-width: 900px)").matches;
+  }, []);
+
+  /**
+   * Handle Live Demo click for mobile-only projects:
+   * - Mobile: open the link
+   * - Desktop: toggle QR panel
+   */
+  const handleMobileDemoClick = () => {
+    if (!project.liveUrl) return;
+
+    if (isMobile) {
+      window.open(project.liveUrl, "_blank", "noreferrer");
+      return;
+    }
+
+    setShowMobilePanel((v) => !v);
+  };
+
   return (
     <article className="project-card">
       {/* =========================
           Project image / media
          ========================= */}
       <div className="project-media">
-        {/* 
-          Lazy loading improves performance when
-          multiple project cards are rendered 
-        */}
-        <img
-          src={project.image}
-          alt={project.title}
-          loading="lazy"
-        />
+        {/* Lazy loading improves performance when multiple cards are on screen */}
+        <img src={project.image} alt={project.title} loading="lazy" />
       </div>
 
       {/* =========================
@@ -46,10 +73,7 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
       <div className="project-body">
         {/* Title and subtitle */}
         <div className="project-top">
-          {/* Project name */}
           <h3 className="project-title">{project.title}</h3>
-
-          {/* Short contextual subtitle (e.g. stack or purpose) */}
           <p className="project-subtitle">{project.subtitle}</p>
         </div>
 
@@ -58,9 +82,9 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
 
         {/* Tech stack pills */}
         <div className="project-tech" aria-label="Tech stack">
-          {project.tech.map((t) => (
-            <span className="pill" key={t}>
-              {t}
+          {project.tech.map((tech) => (
+            <span className="pill" key={tech}>
+              {tech}
             </span>
           ))}
         </div>
@@ -69,49 +93,64 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
             Action buttons
            ========================= */}
         <div className="project-actions">
-          {/* 
-            FAANG-style choice:
-            - Emphasize source code slightly more than live demo
-          */}
+          {/* View Code (primary) */}
           {project.repoUrl ? (
-            <a
-              className="btn primary"
-              href={project.repoUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="btn primary" href={project.repoUrl} target="_blank" rel="noreferrer">
               View Code
             </a>
           ) : (
-            <button
-              className="btn primary"
-              disabled
-              title="Add GitHub link later"
-            >
+            <button className="btn primary" disabled title="Add GitHub link later">
               View Code
             </button>
           )}
 
-          {/* Live demo link (optional) */}
+          {/* Live Demo */}
           {project.liveUrl ? (
-            <a
-              className="btn"
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Live Demo
-            </a>
+            project.mobileOnly ? (
+              <button
+                type="button"
+                className="btn"
+                onClick={handleMobileDemoClick}
+                aria-expanded={showMobilePanel}
+              >
+                Live Demo
+              </button>
+            ) : (
+              <a className="btn" href={project.liveUrl} target="_blank" rel="noreferrer">
+                Live Demo
+              </a>
+            )
           ) : (
-            <button
-              className="btn"
-              disabled
-              title="Add live link later"
-            >
+            <button className="btn" disabled title="Add live link later">
               Live Demo
             </button>
           )}
         </div>
+
+        {/* =========================
+            Mobile-only demo panel
+            - shows ONLY when user clicks Live Demo on desktop
+           ========================= */}
+        {project.mobileOnly && project.liveUrl && showMobilePanel && (
+          <div className="project-mobile-panel" role="region" aria-label="Mobile demo options">
+            <p className="project-note">
+              {project.mobileOnlyNote ?? "Mobile only — scan the QR code or open on your phone."}
+            </p>
+
+            <div className="project-mobile-row">
+              <a className="btn mobile" href={project.liveUrl} target="_blank" rel="noreferrer">
+                Open on Phone
+              </a>
+
+              {project.qrImage && (
+                <div className="project-qr">
+                  <img src={project.qrImage} alt={`${project.title} QR code`} />
+                  <span className="project-qr-label">Scan to open</span>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </article>
   );

@@ -8,4 +8,12 @@ export interface Project {
   image: string;     
   liveUrl?: string;  
   repoUrl?: string;  
+   /** If true, the liveUrl is meant for mobile only (Expo / deep link) */
+  mobileOnly?: boolean;
+
+  /** Optional QR code image (best placed in /public/images/qr-*.png) */
+  qrImage?: string;
+
+  /** Optional helper text shown near the QR */
+  mobileOnlyNote?: string;
 }

@@ -48,9 +48,13 @@ export const projects: Project[] = [
     description:
       "Workout planner with routines and progress tracking. Built with a clean UI and scalable structure.",
     tech: ["React Native", "Expo", "TypeScript", "REST API"],
-    image: "images/project-workout.jpeg",
-    // liveUrl: "https://...",  
-    repoUrl: "https://github.com/vasilikapapa/workout-app"
+    image: "images/project-workout.jpg",
+    liveUrl: "https://expo.dev/preview/update?message=Login%26Register+Image+Background&updateRuntimeVersion=1.0.0&createdAt=2026-01-29T15%3A00%3A54.678Z&slug=exp&projectId=3a9b7182-6fa1-43e2-8a52-af08253b3eb6&group=d10fbf89-7f85-4bf4-940a-f07e4293bb89",  
+    repoUrl: "https://github.com/vasilikapapa/workout-app",
+    mobileOnly: true,
+    qrImage: "/images/qr-workout.png",
+    mobileOnlyNote: "Mobile only — open on your phone or scan the QR code.",
+
   },
   {
     id: "restaurant-website",

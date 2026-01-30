@@ -1,6 +1,6 @@
 import "./ProjectCard.css";
 import type { Project } from "../../types/Projects";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 /**
  * Props for ProjectCard
@@ -22,19 +22,18 @@ type Props = {
  * - Image is placed at the top for quick visual context
  * - Content flows from title → description → tech → actions
  * - Buttons follow a FAANG-style hierarchy (code > live demo)
- * - Mobile-only demos open link on mobile; show QR panel on desktop
+ * - Mobile-only demos open a modal with Expo/QR instructions
  */
 export default function ProjectCard({ project }: Props): React.ReactElement {
   /**
-   * Desktop-only: toggle a "Live Demo" panel for mobile-only apps
-   * - closed by default to keep the card clean
+   * Modal state:
+   * - Used for mobile-only projects (Expo demos)
+   * - Keeps the card clean and makes the demo experience clear
    */
-  const [showMobilePanel, setShowMobilePanel] = useState(false);
+  const [showDemoModal, setShowDemoModal] = useState(false);
 
   /**
    * Detect mobile-ish screens (simple + good enough for this use case)
-   * - If on mobile, we open the link directly
-   * - If on desktop, we show the QR panel
    */
   const isMobile = useMemo(() => {
     if (typeof window === "undefined") return false;
@@ -42,27 +41,72 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
   }, []);
 
   /**
-   * Handle Live Demo click for mobile-only projects:
-   * - Mobile: open the link
-   * - Desktop: toggle QR panel
+   * Close modal helper
    */
-  const handleMobileDemoClick = () => {
+  const closeModal = () => setShowDemoModal(false);
+
+  /**
+   * Lock background scroll when modal is open (nice UX)
+   */
+  useEffect(() => {
+    if (!showDemoModal) return;
+
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [showDemoModal]);
+
+  /**
+   * Close on Escape
+   */
+  useEffect(() => {
+    if (!showDemoModal) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeModal();
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [showDemoModal]);
+
+  /**
+   * Handle demo click:
+   * - For normal web projects: open link
+   * - For mobile-only Expo projects: open modal (desktop + mobile)
+   */
+  const handleDemoClick = () => {
     if (!project.liveUrl) return;
 
-    // On mobile screens we open the link directly
-    if (isMobile) {
-      window.open(project.liveUrl, "_blank", "noreferrer");
+    // Expo / mobile-only: show modal first (best UX)
+    if (project.mobileOnly && project.requiresExpoGo) {
+      setShowDemoModal(true);
       return;
     }
 
-    // On desktop we show a panel (QR + instructions)
-    setShowMobilePanel((v) => !v);
+    // Other mobile-only projects (without Expo requirement):
+    // - Desktop: you could still show modal/QR if you want
+    // - For now: open link on mobile, toggle modal on desktop
+    if (project.mobileOnly) {
+      if (isMobile) {
+        window.open(project.liveUrl, "_blank", "noreferrer");
+      } else {
+        setShowDemoModal(true);
+      }
+      return;
+    }
+
+    // Standard web demo
+    window.open(project.liveUrl, "_blank", "noreferrer");
   };
 
   /**
    * Button label:
    * - For normal web projects: "Live Demo"
-   * - For mobile-only projects: "Mobile Demo" (clearer expectation)
+   * - For mobile-only projects: "Mobile Demo"
    */
   const demoLabel = project.mobileOnly ? "Mobile Demo" : "Live Demo";
 
@@ -113,76 +157,69 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
             </button>
           )}
 
-          {/* Live Demo / Mobile Demo */}
+          {/* Demo button */}
           {project.liveUrl ? (
-            project.mobileOnly ? (
-              <button
-                type="button"
-                className="btn"
-                onClick={handleMobileDemoClick}
-                aria-expanded={showMobilePanel}
-                aria-controls={`mobile-panel-${project.id ?? project.title}`}
-              >
-                {demoLabel}
-              </button>
-            ) : (
-              <a className="btn" href={project.liveUrl} target="_blank" rel="noreferrer">
-                {demoLabel}
-              </a>
-            )
+            <button type="button" className="btn" onClick={handleDemoClick}>
+              {demoLabel}
+            </button>
           ) : (
             <button className="btn" disabled title="Add live link later">
               {demoLabel}
             </button>
           )}
         </div>
+      </div>
 
-        {/* =========================
-            Mobile-only demo panel
-            - shows ONLY when user clicks Mobile Demo on desktop
-           ========================= */}
-        {project.mobileOnly && project.liveUrl && showMobilePanel && (
+      {/* =========================
+          Demo Modal (Expo / Mobile-only)
+         ========================= */}
+      {showDemoModal && project.liveUrl && (
+        <div className="modal-overlay" role="presentation" onClick={closeModal}>
+          {/* Stop click bubbling so clicking inside modal doesn't close it */}
           <div
-            id={`mobile-panel-${project.id ?? project.title}`}
-            className="project-mobile-panel"
-            role="region"
-            aria-label="Mobile demo options"
+            className="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${project.title} demo`}
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Explanation / instruction text */}
-            <p className="project-note">
-              {project.mobileOnlyNote ?? "Mobile only — scan the QR code or open on your phone."}
+            <div className="modal-header">
+              <div className="modal-titleblock">
+                <p className="modal-kicker">MOBILE DEMO</p>
+                <h3 className="modal-title">{project.title}</h3>
+              </div>
+
+              <button className="modal-close" type="button" onClick={closeModal} aria-label="Close">
+                ✕
+              </button>
+            </div>
+
+            {/* Short instruction */}
+            <p className="modal-note">
+              {project.mobileOnlyNote ??
+                "This is a mobile demo. Install Expo Go, then open the link on your phone or scan the QR code."}
             </p>
 
-            {/* Expo Go note and download links (only for Expo projects) */}
+            {/* Expo Go requirement block */}
             {project.requiresExpoGo && (
-              <div className="project-expo">
-                <p className="project-expo-title">Step 1: Install Expo Go</p>
-
-                <div className="project-expo-links">
-                  <a
-                    className="project-expo-link"
-                    href="https://expo.dev/go"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+              <div className="modal-expo">
+                <p className="modal-expo-title">Step 1: Install Expo Go</p>
+                <div className="modal-expo-links">
+                  <a className="modal-link" href="https://expo.dev/go" target="_blank" rel="noreferrer">
                     Expo Go
                   </a>
-
-                  <span className="project-expo-sep">•</span>
-
+                  <span className="modal-sep">•</span>
                   <a
-                    className="project-expo-link"
+                    className="modal-link"
                     href="https://apps.apple.com/app/expo-go/id982107779"
                     target="_blank"
                     rel="noreferrer"
                   >
                     iOS
                   </a>
-
-                  <span className="project-expo-sep">•</span>
-
+                  <span className="modal-sep">•</span>
                   <a
-                    className="project-expo-link"
+                    className="modal-link"
                     href="https://play.google.com/store/apps/details?id=host.exp.exponent"
                     target="_blank"
                     rel="noreferrer"
@@ -190,29 +227,41 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
                     Android
                   </a>
                 </div>
-
-                <p className="project-expo-sub">
-                  Step 2: Scan the QR (camera) or open the link on your phone.
-                </p>
+                <p className="modal-expo-sub">Step 2: Open the demo link on your phone (or scan QR).</p>
               </div>
             )}
 
-            {/* Button + QR row */}
-            <div className="project-mobile-row">
-              <a className="btn mobile" href={project.liveUrl} target="_blank" rel="noreferrer">
-                Open on Phone
-              </a>
+            {/* Actions + QR */}
+            <div className="modal-body">
+              <div className="modal-actions">
+                <a className="btn primary" href={project.liveUrl} target="_blank" rel="noreferrer">
+                  Open Demo
+                </a>
 
+                {/* Optional: keep a visible “Get Expo Go” quick button */}
+                {project.requiresExpoGo && (
+                  <a className="btn" href="https://expo.dev/go" target="_blank" rel="noreferrer">
+                    Get Expo Go
+                  </a>
+                )}
+              </div>
+
+              {/* QR shown when available (very useful on desktop) */}
               {project.qrImage && (
-                <div className="project-qr">
+                <div className="modal-qr">
                   <img src={project.qrImage} alt={`${project.title} QR code`} />
-                  <span className="project-qr-label">Scan to open</span>
+                  <span className="modal-qr-label">Scan to open</span>
                 </div>
               )}
             </div>
+
+            {/* Tiny footer hint (mobile) */}
+            <p className="modal-foot">
+              Tip: If you’re on desktop, scan the QR with your phone camera. If you’re on mobile, tap “Open Demo”.
+            </p>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </article>
   );
 }

@@ -181,7 +181,7 @@ export default function About(): React.ReactElement {
                   View Code
                 </a>
                 <span className="about-dot">•</span>
-                <a className="about-mini-link" href="https://expo.dev/preview/update?message=Login%26Register+Image+Background&updateRuntimeVersion=1.0.0&createdAt=2026-01-29T15%3A00%3A54.678Z&slug=exp&projectId=3a9b7182-6fa1-43e2-8a52-af08253b3eb6&group=d10fbf89-7f85-4bf4-940a-f07e4293bb89" target="_blank" rel="noreferrer">
+                <a className="about-mini-link" href="http://localhost:5173/workout-app">
                   Live Demo
                 </a>
               </span>

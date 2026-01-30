@@ -5,7 +5,7 @@ import Home from "./pages/Home/Home";
 import ProjectsPage from "./pages/Projects/Projects";
 import AboutPage from "./pages/About/About";
 import ContactPage from "./pages/Contact/Contact";
-
+import WorkoutAppDemo from "./pages/WorkoutAppDemo/WorkoutAppDemo";
 /**
  * App
  *
@@ -34,6 +34,11 @@ export default function App(): React.ReactElement {
         {/* Contact page */}
         <Route path="/contact" element={<ContactPage />} />
       </Route>
+
+      
+          {/* Workout Demo page */}
+        <Route path="/workout-app" element={<WorkoutAppDemo />} />
+        
     </Routes>
   );
 }

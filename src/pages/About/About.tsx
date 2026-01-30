@@ -47,9 +47,14 @@ export default function About(): React.ReactElement {
 
           {/* Download CTA
                */}
-          <a className="about-download" href="/Vasilika_Papa_Resume.pdf" download>
-            <FaDownload /> Download Resume (PDF)
-          </a>
+              <a
+                className="about-download"
+                href="/Vasilika_Papa_Resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+               >
+  <FaDownload /> Open Resume (PDF)
+</a>
         </header>
 
         <div className="about-divider" />

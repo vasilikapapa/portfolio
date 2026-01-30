@@ -51,10 +51,11 @@ export const projects: Project[] = [
     image: "images/project-workout.jpg",
     liveUrl: "https://expo.dev/preview/update?message=Login%26Register+Image+Background&updateRuntimeVersion=1.0.0&createdAt=2026-01-29T15%3A00%3A54.678Z&slug=exp&projectId=3a9b7182-6fa1-43e2-8a52-af08253b3eb6&group=d10fbf89-7f85-4bf4-940a-f07e4293bb89",  
     repoUrl: "https://github.com/vasilikapapa/workout-app",
-    mobileOnly: true,
     qrImage: "/images/qr-workout.png",
-    mobileOnlyNote: "Mobile only — open on your phone or scan the QR code.",
-
+     mobileOnlyNote:
+    "This is a mobile demo. Install Expo Go first, then scan the QR or open the link on your phone.",
+    mobileOnly: true,
+    requiresExpoGo: true,
   },
   {
     id: "restaurant-website",

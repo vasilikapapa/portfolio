@@ -244,6 +244,55 @@
   color: rgba(248, 250, 252, 0.75);
 }
 
+/* =========================
+   Expo Go helper block (only for Expo mobile demos)
+========================= */
+.project-expo {
+  margin: 10px 0 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  background: rgba(2, 6, 23, 0.45);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.project-expo-title {
+  margin: 0 0 6px;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: rgba(248, 250, 252, 0.82);
+}
+
+.project-expo-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.project-expo-link {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  color: rgba(96, 165, 250, 0.95);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(96, 165, 250, 0.35);
+  padding-bottom: 2px;
+}
+
+.project-expo-link:hover {
+  border-bottom-color: rgba(96, 165, 250, 0.75);
+}
+
+.project-expo-sep {
+  color: rgba(248, 250, 252, 0.35);
+}
+
+.project-expo-sub {
+  margin: 8px 0 0;
+  color: rgba(248, 250, 252, 0.70);
+  line-height: 1.5;
+}
+
 
 /* Responsive */
 @media (max-width: 900px) {

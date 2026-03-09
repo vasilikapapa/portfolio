@@ -43,6 +43,7 @@ export const cards: Card[] = [
 export const projects: Project[] = [
   {
     id: "workout-app",
+    slug: "workout-app",
     title: "Workout App",
     subtitle: "Mobile app (Expo) + API",
     description:
@@ -59,6 +60,7 @@ export const projects: Project[] = [
   },
   {
     id: "restaurant-website",
+    slug: "restaurant-website",
     title: "Restaurant Website",
     subtitle: "Landing page + menu layout",
     description:
@@ -71,6 +73,7 @@ export const projects: Project[] = [
 
   {
   id: "portfolio-roadmap-tracker",
+  slug: "portfolio-tracker",
   title: "Portfolio Roadmap Tracker",
   subtitle: "Full-stack project management app",
   description:

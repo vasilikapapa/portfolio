@@ -1,16 +1,23 @@
-// Defines the structure for a single portfolio project card
-export interface Project {
+/**
+ * Project type
+ *
+ * Purpose:
+ * - Defines the shape of one project used in the portfolio frontend
+ */
+export type Project = {
   id: string;
   title: string;
   subtitle: string;
   description: string;
+  image: string;
   tech: string[];
-  image: string;     
-  liveUrl?: string;  
-  repoUrl?: string;  
-  // Mobile-only demo support
+  slug: string;
+
+  repoUrl?: string;
+  liveUrl?: string;
+
   mobileOnly?: boolean;
+  requiresExpoGo?: boolean;
   mobileOnlyNote?: string;
   qrImage?: string;
-  requiresExpoGo?: boolean;
-}
+};

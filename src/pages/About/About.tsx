@@ -154,6 +154,51 @@ export default function About(): React.ReactElement {
 
           <div className="about-item">
             <div className="about-item-top">
+              <h3>Portfolio Roadmap Tracker — Full Stack Application (React, TypeScript, Java, Spring Boot)</h3>
+
+              <span className="about-meta">
+                <a
+                  className="about-mini-link"
+                  href="https://github.com/vasilikapapa/portfolio-roadmap-tracker"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View Code
+                </a>
+                <span className="about-dot">•</span>
+                <a
+                  className="about-mini-link"
+                  href="https://portfolio-roadmap-tracker.vercel.app"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Live Demo
+                </a>
+              </span>
+            </div>
+
+            <ul>
+              <li>
+                Built a full-stack project tracking platform with a React and TypeScript
+                frontend and a Java Spring Boot backend.
+              </li>
+              <li>
+                Implemented REST APIs, authentication, and admin editing mode for
+                managing projects and updates.
+              </li>
+              <li>
+                Integrated PostgreSQL database and deployed the application using
+                Docker, Vercel, and Render.
+              </li>
+              <li>
+                Designed a responsive UI with reusable components and clean
+                architecture.
+              </li>
+            </ul>
+          </div>
+
+          <div className="about-item">
+            <div className="about-item-top">
               <h3>Web Restaurant Application — Full Stack Web Project (React, TypeScript)</h3>
               <span className="about-meta">
                 <a className="about-mini-link" href="https://github.com/vasilikapapa/restaurant-website" target="_blank" rel="noreferrer">

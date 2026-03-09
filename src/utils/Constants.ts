@@ -68,4 +68,26 @@ export const projects: Project[] = [
     liveUrl:"https://restaurant-website-nine-gold.vercel.app/",
     repoUrl:"https://github.com/vasilikapapa/restaurant-website"
   },
+
+  {
+  id: "portfolio-roadmap-tracker",
+  title: "Portfolio Roadmap Tracker",
+  subtitle: "Full-stack project management app",
+  description:
+    "Full-stack application for tracking portfolio projects, tasks, and updates. Includes authentication, admin editing mode, project dashboards, and a responsive UI. Built with a React frontend and Spring Boot backend with a PostgreSQL database.",
+  tech: [
+    "React",
+    "TypeScript",
+    "Java",
+    "Spring Boot",
+    "PostgreSQL",
+    "Docker",
+    "Vercel",
+    "Render"
+  ],
+  image: "/images/project-portfolio-tracker.jpg",
+  liveUrl: "https://portfolio-roadmap-tracker.vercel.app",
+  repoUrl: "https://github.com/vasilikapapa/portfolio-roadmap-tracker"
+}
+
 ];

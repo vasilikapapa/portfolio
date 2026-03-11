@@ -1,7 +1,7 @@
 import "./ProjectCard.css";
 import type { Project } from "../../types/Projects";
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Props for ProjectCard
@@ -15,11 +15,12 @@ type Props = {
  *
  * Purpose:
  * - Shows one project card
- * - Title click opens local portfolio project details page
- * - "View Roadmap" also opens local portfolio project details page
+ * - Clicking anywhere on the card opens the local project details page
+ * - Inner buttons still work independently
  * - Demo behavior remains unchanged
  */
 export default function ProjectCard({ project }: Props): React.ReactElement {
+  const navigate = useNavigate();
   const [showDemoModal, setShowDemoModal] = useState(false);
 
   /**
@@ -34,6 +35,13 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
    * Local portfolio route for details page
    */
   const projectDetailsHref = `/projects/${project.slug}`;
+
+  /**
+   * Open details page
+   */
+  const openProjectDetails = () => {
+    navigate(projectDetailsHref);
+  };
 
   /**
    * Close modal helper
@@ -69,9 +77,21 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
   }, [showDemoModal]);
 
   /**
+   * Allow keyboard access for the whole clickable card
+   */
+  const handleCardKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openProjectDetails();
+    }
+  };
+
+  /**
    * Demo click behavior
    */
-  const handleDemoClick = () => {
+  const handleDemoClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+
     if (!project.liveUrl) return;
 
     if (project.mobileOnly && project.requiresExpoGo) {
@@ -94,23 +114,22 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
   const demoLabel = project.mobileOnly ? "Mobile Demo" : "Live Demo";
 
   return (
-    <article className="project-card">
+    <article
+      className="project-card"
+      role="link"
+      tabIndex={0}
+      onClick={openProjectDetails}
+      onKeyDown={handleCardKeyDown}
+      aria-label={`Open details for ${project.title}`}
+      style={{ cursor: "pointer" }}
+    >
       <div className="project-media">
         <img src={project.image} alt={project.title} loading="lazy" />
       </div>
 
       <div className="project-body">
         <div className="project-top">
-          <h3 className="project-title">
-            <Link
-              to={projectDetailsHref}
-              style={{ color: "inherit", textDecoration: "none" }}
-              title="Open project details"
-            >
-              {project.title}
-            </Link>
-          </h3>
-
+          <h3 className="project-title">{project.title}</h3>
           <p className="project-subtitle">{project.subtitle}</p>
         </div>
 
@@ -126,11 +145,22 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
 
         <div className="project-actions">
           {project.repoUrl ? (
-            <a className="btn primary" href={project.repoUrl} target="_blank" rel="noreferrer">
+            <a
+              className="btn primary"
+              href={project.repoUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
+            >
               View Code
             </a>
           ) : (
-            <button className="btn primary" disabled title="Add GitHub link later">
+            <button
+              className="btn primary"
+              disabled
+              title="Add GitHub link later"
+              onClick={(e) => e.stopPropagation()}
+            >
               View Code
             </button>
           )}
@@ -140,19 +170,39 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
               {demoLabel}
             </button>
           ) : (
-            <button className="btn" disabled title="Add live link later">
+            <button
+              className="btn"
+              disabled
+              title="Add live link later"
+              onClick={(e) => e.stopPropagation()}
+            >
               {demoLabel}
             </button>
           )}
 
-          <Link to={projectDetailsHref} className="btn" title="Open project roadmap details">
+          <button
+            type="button"
+            className="btn"
+            title="Open project roadmap details"
+            onClick={(e) => {
+              e.stopPropagation();
+              openProjectDetails();
+            }}
+          >
             View Roadmap
-          </Link>
+          </button>
         </div>
       </div>
 
       {showDemoModal && project.liveUrl && (
-        <div className="modal-overlay" role="presentation" onClick={closeModal}>
+        <div
+          className="modal-overlay"
+          role="presentation"
+          onClick={(e) => {
+            e.stopPropagation();
+            closeModal();
+          }}
+        >
           <div
             className="modal"
             role="dialog"
@@ -166,7 +216,12 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
                 <h3 className="modal-title">{project.title}</h3>
               </div>
 
-              <button className="modal-close" type="button" onClick={closeModal} aria-label="Close">
+              <button
+                className="modal-close"
+                type="button"
+                onClick={closeModal}
+                aria-label="Close"
+              >
                 ✕
               </button>
             </div>
@@ -181,7 +236,13 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
                 <p className="modal-expo-title">Step 1: Install Expo Go</p>
 
                 <div className="modal-expo-links">
-                  <a className="modal-link" href="https://expo.dev/go" target="_blank" rel="noreferrer">
+                  <a
+                    className="modal-link"
+                    href="https://expo.dev/go"
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     Expo Go
                   </a>
                   <span className="modal-sep">•</span>
@@ -190,6 +251,7 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
                     href="https://apps.apple.com/app/expo-go/id982107779"
                     target="_blank"
                     rel="noreferrer"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     iOS
                   </a>
@@ -199,6 +261,7 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
                     href="https://play.google.com/store/apps/details?id=host.exp.exponent"
                     target="_blank"
                     rel="noreferrer"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     Android
                   </a>
@@ -212,12 +275,24 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
 
             <div className="modal-body">
               <div className="modal-actions">
-                <a className="btn primary" href={project.liveUrl} target="_blank" rel="noreferrer">
+                <a
+                  className="btn primary"
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   Open Demo
                 </a>
 
                 {project.requiresExpoGo && (
-                  <a className="btn" href="https://expo.dev/go" target="_blank" rel="noreferrer">
+                  <a
+                    className="btn"
+                    href="https://expo.dev/go"
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     Get Expo Go
                   </a>
                 )}

@@ -1,0 +1,38 @@
+/* =========================
+   Page background wrapper
+   ========================= */
+.page-background {
+  /* Ensure the page fills the full viewport height */
+  min-height: 100vh;
+
+  /* Center the main container horizontally */
+  display: flex;
+  justify-content: center;
+
+  /* Outer padding for small screens */
+  padding: 40px 16px;
+}
+
+/* =========================
+   Main page container
+   ========================= */
+.page-container {
+  /* Full width up to a readable max */
+  width: 100%;
+  max-width: 1100px;
+
+  /* Vertical layout for navbar, content, and footer */
+  display: flex;
+  flex-direction: column;
+
+  /* Space between major layout blocks */
+  gap: 18px;
+}
+
+/* =========================
+   Page body
+   ========================= */
+.page-body {
+  /* Grow to fill available space and push footer down */
+  flex: 1;
+}

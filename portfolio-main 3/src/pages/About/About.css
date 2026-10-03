@@ -1,0 +1,483 @@
+/* =========================================================
+   Resume (About) page
+   Matches the site's dark theme (variables in index.css)
+   ========================================================= */
+
+.resume {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* =========================
+   Header
+   ========================= */
+.resume-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(96, 165, 250, 0.16), transparent 55%),
+    var(--surface);
+  box-shadow: var(--shadowSm);
+  overflow: hidden;
+}
+
+.resume-eyebrow {
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.resume-name {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.resume-role {
+  margin: 8px 0 18px;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.resume-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.resume-contact li,
+.resume-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.resume-contact a {
+  color: var(--ink);
+}
+
+.resume-contact a:hover {
+  color: var(--accent);
+}
+
+.resume-contact svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* =========================
+   Header buttons
+   ========================= */
+.resume-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--borderStrong);
+  background: var(--surface3);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+
+.resume-btn:hover {
+  border-color: var(--accentBorder);
+  transform: translateY(-1px);
+}
+
+.resume-btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #06101f;
+}
+
+.resume-btn.primary:hover {
+  background: #93c5fd;
+}
+
+/* =========================
+   Summary
+   ========================= */
+.resume-summary {
+  margin: 0;
+  padding: 0 4px 0 20px;
+  border-left: 3px solid var(--accent);
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--ink);
+  max-width: 78ch;
+}
+
+/* =========================
+   Layout grid
+   ========================= */
+.resume-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 28px;
+  align-items: start;
+}
+
+.resume-main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.resume-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 24px;
+}
+
+.resume-section {
+  margin: 0;
+}
+
+.resume-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 18px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.resume-main .resume-section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* =========================
+   Shared entry styles
+   ========================= */
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.entry-head h3 {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.entry-org {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.entry-dates {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.entry-sub {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.entry-roles {
+  margin: 8px 0 0;
+  padding: 0 0 0 12px;
+  list-style: none;
+  border-left: 2px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.entry-bullets {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  list-style: disc;
+  color: rgba(248, 250, 252, 0.82);
+  line-height: 1.65;
+}
+
+.entry-bullets li + li {
+  margin-top: 4px;
+}
+
+.entry-bullets li::marker {
+  color: var(--accent);
+}
+
+/* =========================
+   Experience timeline
+   ========================= */
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 24px 26px;
+  border-left: 2px solid var(--border);
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+  border-left-color: transparent;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+}
+
+/* =========================
+   Projects
+   ========================= */
+.project-list {
+  display: grid;
+  gap: 14px;
+}
+
+.project-entry {
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface2);
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.project-entry:hover {
+  border-color: var(--accentBorder);
+  transform: translateY(-2px);
+}
+
+.entry-links {
+  display: inline-flex;
+  gap: 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.entry-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.entry-links a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Chips (tech / skills)
+   ========================= */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--accentBorder);
+  background: var(--accentSoft);
+  color: #bfdbfe;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* =========================
+   Sidebar cards
+   ========================= */
+.side-card {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.side-card .resume-section-title {
+  margin-bottom: 14px;
+}
+
+.skill-group + .skill-group {
+  margin-top: 16px;
+}
+
+.skill-group h3,
+.side-entry h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.skill-group .chips {
+  margin-top: 8px;
+}
+
+.side-entry + .side-entry {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.side-entry p {
+  margin: 3px 0 4px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.side-entry .side-details {
+  color: rgba(248, 250, 252, 0.75);
+}
+
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width: 900px) {
+  .resume-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-side {
+    position: static;
+  }
+
+  .resume-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 520px) {
+  .resume-actions {
+    width: 100%;
+  }
+
+  .resume-btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .entry-head {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* =========================
+   Print: clean light resume
+   ========================= */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+  }
+
+  .app-bar,
+  .resume-actions {
+    display: none !important;
+  }
+
+  .resume,
+  .resume * {
+    color: #111827 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  .resume-header,
+  .project-entry,
+  .side-card {
+    background: #fff !important;
+    border-color: #e5e7eb !important;
+    padding: 0 0 12px;
+    border-width: 0 0 1px;
+    border-radius: 0;
+  }
+
+  .resume-eyebrow {
+    display: none;
+  }
+
+  .resume-grid {
+    grid-template-columns: 1fr 34%;
+  }
+
+  .resume-side {
+    position: static;
+  }
+
+  .chips li {
+    background: #f3f4f6 !important;
+    border-color: #e5e7eb !important;
+  }
+
+  .timeline-item::before {
+    background: #fff !important;
+  }
+
+  .project-entry,
+  .timeline-item,
+  .side-entry {
+    break-inside: avoid;
+  }
+}

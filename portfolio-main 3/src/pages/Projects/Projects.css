@@ -1,0 +1,62 @@
+/* =========================
+   Projects page layout
+   ========================= */
+.projects {
+  /* Stack header and grid vertically */
+  display: flex;
+  flex-direction: column;
+
+  /* Space between header and project grid */
+  gap: 18px;
+}
+
+/* =========================
+   Page header
+   ========================= */
+.projects-header {
+  /* Small spacing around header text */
+  padding: 6px 2px 10px;
+}
+
+/* Main page title */
+.projects-title {
+  margin: 0;
+
+  /* Large, high-emphasis heading */
+  font-size: 2rem;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* Supporting subtitle text */
+.projects-subtitle {
+  margin: 8px 0 0;
+
+  /* Limit line length for readability */
+  max-width: 70ch;
+
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* =========================
+   Projects grid
+   ========================= */
+.projects-grid {
+  display: grid;
+
+  /* Two-column layout on desktop */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* =========================
+   Responsive layout
+   ========================= */
+@media (max-width: 900px) {
+  /* Stack project cards on smaller screens */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}

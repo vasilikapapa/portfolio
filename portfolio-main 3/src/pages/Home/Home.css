@@ -1,0 +1,49 @@
+/* =========================
+   Home page layout
+   ========================= */
+.home {
+  /* Stack sections vertically */
+  display: flex;
+  flex-direction: column;
+
+  /* Space between major sections (Hero, Skills, etc.) */
+  gap: 28px;
+}
+
+/* =========================
+   Individual section wrapper
+   ========================= */
+.home-section {
+  /* No extra padding; spacing handled by layout */
+  padding: 0;
+}
+
+/* =========================
+   Section header (title + subtitle)
+   ========================= */
+.home-header {
+  /* Small spacing before section content */
+  margin: 6px 0 14px;
+}
+
+/* Section title */
+.home-title {
+  margin: 0;
+
+  /* Medium emphasis heading (below Hero level) */
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* Section subtitle */
+.home-subtitle {
+  margin: 8px 0 0;
+
+  /* Muted supporting text */
+  color: var(--muted);
+  line-height: 1.55;
+
+  /* Limit line length for readability */
+  max-width: 70ch;
+}

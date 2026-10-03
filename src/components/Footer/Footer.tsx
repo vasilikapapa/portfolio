@@ -1,4 +1,7 @@
 import "./Footer.css";
+import { Link } from "react-router-dom";
+import { Lock, PencilLine } from "lucide-react";
+import { useSession } from "../../lib/useSession";
 
 /**
  * Footer component
@@ -14,11 +17,18 @@ import "./Footer.css";
  * - Layout aligns perfectly with Navbar and main content
  */
 export default function Footer(): React.ReactElement {
+  const session = useSession();
+
   return (
     <footer className="footer">
       {/* Copyright information with dynamic year */}
       <p className="footer-copy">
         © {new Date().getFullYear()} Vasilika Papa
+        {/* Quiet admin entry: "Edit resume" when signed in, otherwise a small sign-in link */}
+        <Link className="footer-admin" to="/admin" title={session ? "Edit resume" : "Admin sign in"}>
+          {session ? <PencilLine size={14} aria-hidden /> : <Lock size={13} aria-hidden />}
+          {session ? "Edit resume" : "Admin"}
+        </Link>
       </p>
 
       {/* Footer navigation links */}

@@ -24,12 +24,21 @@ I built this portfolio to:
 
 ---
 
+## ✏️ Editing the resume without code
+
+The About (resume) page and Home skills are loaded from **Supabase**.
+Sign in at **/admin** to edit everything from the browser and save it live.
+See [SETUP-ADMIN.md](SETUP-ADMIN.md) for the one-time setup.
+
+---
+
 ## 🛠 Tech Stack
 
 ### Frontend
 - React
 - TypeScript
 - React Router
+- Supabase (auth + database for editable resume content)
 
 ### Styling & Design
 - Custom CSS (no UI frameworks)

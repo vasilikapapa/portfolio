@@ -1,5 +1,6 @@
 import "./Hero.css";
 import { Link } from "react-router-dom";
+import { useResume } from "../../context/ResumeContext";
 
 /**
  * Hero component
@@ -15,6 +16,8 @@ import { Link } from "react-router-dom";
  * - Buttons use consistent global styles defined in Hero.css
  */
 export default function Hero(): React.ReactElement {
+  const { resume } = useResume();
+
   return (
     <section className="hero">
       {/* =========================
@@ -48,7 +51,7 @@ export default function Hero(): React.ReactElement {
           {/* Open resume PDF in a new tab */}
           <a
             className="btn ghost"
-            href="/Vasilika_Papa_Resume.pdf"
+            href={resume.resumeUrl || "/about"}
             target="_blank"
             rel="noreferrer"
           >

@@ -7,6 +7,7 @@ import AboutPage from "./pages/About/About";
 import ContactPage from "./pages/Contact/Contact";
 import WorkoutAppDemo from "./pages/WorkoutAppDemo/WorkoutAppDemo";
 import ProjectDetailsPage from "./pages/ProjectDetails/ProjectDetailsPage";
+import AdminPage from "./pages/Admin/Admin";
 
 /**
  * App
@@ -30,6 +31,9 @@ export default function App(): React.ReactElement {
       </Route>
 
       <Route path="/workout-app" element={<WorkoutAppDemo />} />
+
+      {/* Sign-in + resume editor */}
+      <Route path="/admin" element={<AdminPage />} />
     </Routes>
   );
 }

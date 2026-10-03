@@ -1,6 +1,6 @@
 import "./Skills.css";
-import { skillBoxes } from "../../utils/Constants";
-import { FaCode, FaCogs, FaDatabase } from "react-icons/fa";
+import { useResume } from "../../context/ResumeContext";
+import { FaCode, FaCogs, FaDatabase, FaLayerGroup } from "react-icons/fa";
 
 /**
  * Skills component
@@ -8,9 +8,12 @@ import { FaCode, FaCogs, FaDatabase } from "react-icons/fa";
  * Purpose:
  * - Displays grouped technical skills (Frontend, Backend, Database & Tools)
  * - Uses icons to visually distinguish each category
- * - Data-driven via the `skillBoxes` constant for easy maintenance
+ * - Data comes from the resume (edited at /admin)
  */
 export default function Skills(): React.ReactElement {
+  // Skills are edited at /admin (same list as the resume page)
+  const skillBoxes = useResume().resume.skills;
+
   /**
    * Returns an icon based on the skill category title
    *
@@ -26,7 +29,7 @@ export default function Skills(): React.ReactElement {
       case "database & tools":
         return <FaDatabase size={18} />;
       default:
-        return null;
+        return <FaLayerGroup size={18} />;
     }
   };
 
@@ -47,9 +50,9 @@ export default function Skills(): React.ReactElement {
             Skills grid
            ========================= */}
         <div className="skills-boxes">
-          {skillBoxes.map((box) => (
+          {skillBoxes.map((box, index) => (
             <div
-              key={box.title}
+              key={box.title + index}
               className={`
                 skill-box 
                 skill-${box.title.toLowerCase().replace(/[^a-z]+/g, "-")}
@@ -63,8 +66,8 @@ export default function Skills(): React.ReactElement {
 
               {/* List of individual skills */}
               <ul>
-                {box.items.map((item, index) => (
-                  <li key={index}>{item}</li>
+                {box.items.map((item, i) => (
+                  <li key={i}>{item}</li>
                 ))}
               </ul>
             </div>

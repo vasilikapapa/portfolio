@@ -46,3 +46,26 @@
   /* Simple underline for subtle interaction feedback */
   text-decoration: underline;
 }
+
+/* =========================
+   Admin link (kept quiet for visitors)
+   ========================= */
+.footer-copy {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+}
+
+.footer-admin {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.footer-admin:hover {
+  opacity: 1;
+  color: var(--ink);
+}

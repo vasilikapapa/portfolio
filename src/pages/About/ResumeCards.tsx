@@ -1,5 +1,6 @@
 import "./About.css";
-import { FaDownload, FaEnvelope, FaExternalLinkAlt, FaGithub, FaLinkedin, FaMapMarkerAlt, FaPrint } from "react-icons/fa";
+import { FaDownload, FaEnvelope, FaExternalLinkAlt, FaGithub, FaLinkedin, FaMapMarkerAlt, FaPhone, FaPrint } from "react-icons/fa";
+import type { Experience } from "../../types/Resume";
 import { useResume } from "../../context/ResumeContext";
 
 /** Shows a URL without "https://" and a trailing slash, e.g. github.com/name */
@@ -44,6 +45,13 @@ export default function ResumeCards(): React.ReactElement {
                 </a>
               </li>
             )}
+            {r.phone && (
+              <li>
+                <a href={`tel:${r.phone.replace(/[^\d+]/g, "")}`}>
+                  <FaPhone aria-hidden /> {r.phone}
+                </a>
+              </li>
+            )}
             {r.github && (
               <li>
                 <a href={r.github} target="_blank" rel="noreferrer">
@@ -80,32 +88,7 @@ export default function ResumeCards(): React.ReactElement {
             Main column
            ========================= */}
         <div className="resume-main">
-          {r.experience.length > 0 && (
-            <section className="resume-section">
-              <h2 className="resume-section-title">Experience</h2>
-              <ol className="timeline">
-                {r.experience.map((job, i) => (
-                  <li className="timeline-item" key={`${job.company}-${i}`}>
-                    <div className="entry-head">
-                      <h3>
-                        {job.title}
-                        {job.company && <span className="entry-org"> · {job.company}</span>}
-                      </h3>
-                      <span className="entry-dates">{job.dates}</span>
-                    </div>
-                    {job.location && <p className="entry-sub">{job.location}</p>}
-                    {job.bullets.length > 0 && (
-                      <ul className="entry-bullets">
-                        {job.bullets.map((b, j) => (
-                          <li key={j}>{b}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ol>
-            </section>
-          )}
+          <ExperienceSection label="Experience" items={r.experience} />
 
           {r.projects.length > 0 && (
             <section className="resume-section">
@@ -150,6 +133,7 @@ export default function ResumeCards(): React.ReactElement {
               </div>
             </section>
           )}
+          <ExperienceSection label="Additional experience" items={r.additionalExperience ?? []} />
         </div>
 
         {/* =========================
@@ -179,7 +163,7 @@ export default function ResumeCards(): React.ReactElement {
                 <div className="side-entry" key={`${e.degree}-${i}`}>
                   <h3>{e.degree}</h3>
                   <p>{e.school}</p>
-                  <span className="entry-dates">{e.dates}</span>
+                  {e.dates && <span className="entry-dates">{e.dates}</span>}
                 </div>
               ))}
             </section>
@@ -193,13 +177,55 @@ export default function ResumeCards(): React.ReactElement {
                   <h3>{t.title}</h3>
                   <p>{t.org}</p>
                   {t.details && <p className="side-details">{t.details}</p>}
-                  <span className="entry-dates">{t.dates}</span>
+                  {t.dates && <span className="entry-dates">{t.dates}</span>}
                 </div>
               ))}
             </section>
           )}
         </aside>
       </div>
+    </section>
+  );
+}
+
+/** Timeline-style experience section (used for "Experience" and "Additional experience"). */
+function ExperienceSection({ label, items }: { label: string; items: Experience[] }): React.ReactElement | null {
+  if (items.length === 0) return null;
+  return (
+    <section className="resume-section">
+      <h2 className="resume-section-title">{label}</h2>
+      <ol className="timeline">
+        {items.map((job, i) => (
+          <li className="timeline-item" key={`${job.company}-${i}`}>
+            <div className="entry-head">
+              {job.roles && job.roles.length > 0 ? (
+                <h3>{job.company}</h3>
+              ) : (
+                <h3>
+                  {job.title}
+                  {job.company && <span className="entry-org"> · {job.company}</span>}
+                </h3>
+              )}
+              <span className="entry-dates">{job.dates}</span>
+            </div>
+            {job.location && <p className="entry-sub">{job.location}</p>}
+            {job.roles && job.roles.length > 0 && (
+              <ul className="entry-roles" aria-label="Roles">
+                {job.roles.map((role, j) => (
+                  <li key={j}>{role}</li>
+                ))}
+              </ul>
+            )}
+            {job.bullets.length > 0 && (
+              <ul className="entry-bullets">
+                {job.bullets.map((b, j) => (
+                  <li key={j}>{b}</li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }

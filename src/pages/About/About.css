@@ -221,6 +221,15 @@
   color: var(--muted);
 }
 
+.entry-roles {
+  margin: 8px 0 0;
+  padding: 0 0 0 12px;
+  list-style: none;
+  border-left: 2px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
 .entry-bullets {
   margin: 12px 0 0;
   padding-left: 18px;

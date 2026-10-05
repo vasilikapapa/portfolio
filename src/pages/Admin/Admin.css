@@ -456,3 +456,36 @@
     align-items: stretch;
   }
 }
+
+/* Note above a tab's list */
+.tab-note {
+  margin: 0 0 14px;
+}
+
+/* "Use built-in resume" box */
+.reset-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+  padding: 16px;
+  border: 1px dashed var(--borderStrong);
+  border-radius: 12px;
+}
+
+.reset-box p {
+  margin: 4px 0 0;
+  font-size: 0.88rem;
+}
+
+.reset-box .admin-btn {
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .reset-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

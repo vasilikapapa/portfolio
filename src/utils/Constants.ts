@@ -44,10 +44,10 @@ export const projects: Project[] = [
   {
     id: "workout-app",
     slug: "workout-app",
-    title: "Workout App",
+    title: "Workout Tracker App",
     subtitle: "Mobile app (Expo) + API",
     description:
-      "Workout planner with routines and progress tracking. Built with a clean UI and scalable structure.",
+      "Workout tracking app with structured training plans and simple navigation, tested on physical devices via Expo Go.",
     tech: ["React Native", "Expo", "TypeScript", "REST API"],
     image: "images/project-workout.jpg",
     liveUrl: "https://expo.dev/preview/update?message=Login%26Register+Image+Background&updateRuntimeVersion=1.0.0&createdAt=2026-01-29T15%3A00%3A54.678Z&slug=exp&projectId=3a9b7182-6fa1-43e2-8a52-af08253b3eb6&group=d10fbf89-7f85-4bf4-940a-f07e4293bb89",  
@@ -61,10 +61,10 @@ export const projects: Project[] = [
   {
     id: "restaurant-website",
     slug: "restaurant-website",
-    title: "Restaurant Website",
+    title: "Restaurant Web App",
     subtitle: "Landing page + menu layout",
     description:
-      "Restaurant website with hero, navigation, menu sections, and CTAs. Designed for a clean Pinterest-style feel.",
+      "Responsive restaurant site with a dynamically rendered menu and API integration, designed for accessibility and mobile use.",
     tech: ["React", "Vite", "TypeScript", "CSS"],
     image: "/images/project-restaurant.jpg",
     liveUrl:"https://restaurant-website-nine-gold.vercel.app/",

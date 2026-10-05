@@ -25,11 +25,11 @@ drop policy if exists "Admin can insert content" on public.site_content;
 create policy "Admin can insert content"
   on public.site_content for insert
   to authenticated
-  with check ((auth.jwt() ->> 'email') = 'vasilikapapa108@gmail.com');
+  with check ((auth.jwt() ->> 'email') = 'vasilika.papa108@gmail.com');
 
 drop policy if exists "Admin can update content" on public.site_content;
 create policy "Admin can update content"
   on public.site_content for update
   to authenticated
-  using ((auth.jwt() ->> 'email') = 'vasilikapapa108@gmail.com')
-  with check ((auth.jwt() ->> 'email') = 'vasilikapapa108@gmail.com');
+  using ((auth.jwt() ->> 'email') = 'vasilika.papa108@gmail.com')
+  with check ((auth.jwt() ->> 'email') = 'vasilika.papa108@gmail.com');

@@ -1,14 +1,27 @@
 import "./ResumeJourney.css";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useResume } from "../../context/ResumeContext";
-import type { ResumeData } from "../../types/Resume";
+import type { Experience, ResumeData } from "../../types/Resume";
 
 /** github.com/name instead of https://github.com/name/ */
 function prettyUrl(url: string): string {
   return url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 }
 
-const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+const MONTHS = [
+  "jan",
+  "feb",
+  "mar",
+  "apr",
+  "may",
+  "jun",
+  "jul",
+  "aug",
+  "sep",
+  "oct",
+  "nov",
+  "dec",
+];
 
 /** First 4-digit year in a date string like "Mar 2024 – Oct 2024". */
 function startYear(dates: string): number | null {
@@ -33,15 +46,33 @@ function journeyStops(r: ResumeData): Stop[] {
   const stops: Stop[] = [];
   r.education.forEach((e) => {
     const y = startYear(e.dates);
-    if (y) stops.push({ year: y, key: sortKey(e.dates, y), title: e.degree, place: e.school });
+    if (y)
+      stops.push({
+        year: y,
+        key: sortKey(e.dates, y),
+        title: e.degree,
+        place: e.school,
+      });
   });
   r.training.forEach((t) => {
     const y = startYear(t.dates);
-    if (y) stops.push({ year: y, key: sortKey(t.dates, y), title: t.title, place: t.org });
+    if (y)
+      stops.push({
+        year: y,
+        key: sortKey(t.dates, y),
+        title: t.title,
+        place: t.org,
+      });
   });
-  r.experience.forEach((x) => {
+  [...r.experience, ...(r.additionalExperience ?? [])].forEach((x) => {
     const y = startYear(x.dates);
-    if (y) stops.push({ year: y, key: sortKey(x.dates, y), title: x.title, place: x.company });
+    if (y)
+      stops.push({
+        year: y,
+        key: sortKey(x.dates, y),
+        title: x.title,
+        place: x.company,
+      });
   });
   return stops.sort((a, b) => a.key - b.key);
 }
@@ -67,15 +98,26 @@ export default function ResumeJourney(): React.ReactElement {
         <div className="rj-intro-row">
           <p className="rj-role">
             {r.role}
-            {r.location && <span className="rj-location">, based in {r.location}</span>}
+            {r.location && (
+              <span className="rj-location">, based in {r.location}</span>
+            )}
           </p>
           <div className="rj-actions">
             {r.resumeUrl && (
-              <a className="rj-btn rj-btn-solid" href={r.resumeUrl} target="_blank" rel="noreferrer">
+              <a
+                className="rj-btn rj-btn-solid"
+                href={r.resumeUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
                 Download PDF
               </a>
             )}
-            <button className="rj-btn" type="button" onClick={() => window.print()}>
+            <button
+              className="rj-btn"
+              type="button"
+              onClick={() => window.print()}
+            >
               Print
             </button>
           </div>
@@ -84,6 +126,11 @@ export default function ResumeJourney(): React.ReactElement {
           {r.email && (
             <li>
               <a href={`mailto:${r.email}`}>{r.email}</a>
+            </li>
+          )}
+          {r.phone && (
+            <li>
+              <a href={`tel:${r.phone.replace(/[^\d+]/g, "")}`}>{r.phone}</a>
             </li>
           )}
           {r.github && (
@@ -111,7 +158,13 @@ export default function ResumeJourney(): React.ReactElement {
           {stops.map((s, i) => (
             <li
               key={`${s.year}-${i}`}
-              className={i === stops.length - 1 ? "is-latest" : i === stops.length - 2 ? "is-before-latest" : ""}
+              className={
+                i === stops.length - 1
+                  ? "is-latest"
+                  : i === stops.length - 2
+                    ? "is-before-latest"
+                    : ""
+              }
               style={{ "--i": i } as React.CSSProperties}
             >
               <span className="rj-year">{s.year}</span>
@@ -128,29 +181,7 @@ export default function ResumeJourney(): React.ReactElement {
       {/* =========================
           Experience
          ========================= */}
-      {r.experience.length > 0 && (
-        <section className="rj-section">
-          <h2 className="rj-label">Experience</h2>
-          <div className="rj-body">
-            {r.experience.map((x, i) => (
-              <div className="rj-entry" key={`${x.company}-${i}`}>
-                <div className="rj-entry-head">
-                  <h3>{x.title}</h3>
-                  <span className="rj-when">{x.dates}</span>
-                </div>
-                <p className="rj-where">{[x.company, x.location].filter(Boolean).join(", ")}</p>
-                {x.bullets.length > 0 && (
-                  <ul className="rj-points">
-                    {x.bullets.map((b, j) => (
-                      <li key={j}>{b}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      <ExperienceSection label="Experience" items={r.experience} />
 
       {/* =========================
           Projects
@@ -170,7 +201,9 @@ export default function ResumeJourney(): React.ReactElement {
                     ))}
                   </ul>
                 )}
-                {p.tech.length > 0 && <p className="rj-tech">{p.tech.join(", ")}</p>}
+                {p.tech.length > 0 && (
+                  <p className="rj-tech">{p.tech.join(", ")}</p>
+                )}
                 {(p.repoUrl || p.liveUrl) && (
                   <p className="rj-links">
                     {p.liveUrl && (
@@ -190,6 +223,11 @@ export default function ResumeJourney(): React.ReactElement {
           </div>
         </section>
       )}
+
+      <ExperienceSection
+        label="Additional experience"
+        items={r.additionalExperience ?? []}
+      />
 
       {/* =========================
           Skills
@@ -219,7 +257,7 @@ export default function ResumeJourney(): React.ReactElement {
               <div key={`e-${i}`}>
                 <h3>{e.degree}</h3>
                 <p className="rj-where">{e.school}</p>
-                <p className="rj-when">{e.dates}</p>
+                {e.dates && <p className="rj-when">{e.dates}</p>}
               </div>
             ))}
             {r.training.map((t, i) => (
@@ -227,12 +265,61 @@ export default function ResumeJourney(): React.ReactElement {
                 <h3>{t.title}</h3>
                 <p className="rj-where">{t.org}</p>
                 {t.details && <p className="rj-tech">{t.details}</p>}
-                <p className="rj-when">{t.dates}</p>
+                {t.dates && <p className="rj-when">{t.dates}</p>}
               </div>
             ))}
           </div>
         </section>
       )}
     </article>
+  );
+}
+
+/** One experience section (used for "Experience" and "Additional experience"). */
+function ExperienceSection({
+  label,
+  items,
+}: {
+  label: string;
+  items: Experience[];
+}): React.ReactElement | null {
+  if (items.length === 0) return null;
+  return (
+    <section className="rj-section">
+      <h2 className="rj-label">{label}</h2>
+      <div className="rj-body">
+        {items.map((x, i) => {
+          // With a role history, the company is the heading and the roles list the titles
+          const hasRoles = !!x.roles && x.roles.length > 0;
+          return (
+            <div className="rj-entry" key={`${x.company}-${i}`}>
+              <div className="rj-entry-head">
+                <h3>{hasRoles ? x.company : x.title}</h3>
+                {x.dates && <span className="rj-when">{x.dates}</span>}
+              </div>
+              <p className="rj-where">
+                {(hasRoles ? [x.location] : [x.company, x.location])
+                  .filter(Boolean)
+                  .join(", ")}
+              </p>
+              {x.roles && x.roles.length > 0 && (
+                <ul className="rj-roles" aria-label="Roles">
+                  {x.roles.map((role, j) => (
+                    <li key={j}>{role}</li>
+                  ))}
+                </ul>
+              )}
+              {x.bullets.length > 0 && (
+                <ul className="rj-points">
+                  {x.bullets.map((b, j) => (
+                    <li key={j}>{b}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }

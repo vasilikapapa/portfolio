@@ -1,6 +1,6 @@
 import "./Skills.css";
 import { useResume } from "../../context/ResumeContext";
-import { FaCode, FaCogs, FaDatabase, FaLayerGroup } from "react-icons/fa";
+import { FaCloud, FaCode, FaCogs, FaDatabase, FaLaptopCode, FaLayerGroup, FaTools } from "react-icons/fa";
 
 /**
  * Skills component
@@ -20,17 +20,15 @@ export default function Skills(): React.ReactElement {
    * This keeps icon logic separate from JSX
    * and avoids repeating conditional logic in the render.
    */
-  const getIcon = (title: string): React.ReactElement | null => {
-    switch (title.toLowerCase()) {
-      case "frontend":
-        return <FaCode size={18} />;
-      case "backend":
-        return <FaCogs size={18} />;
-      case "database & tools":
-        return <FaDatabase size={18} />;
-      default:
-        return <FaLayerGroup size={18} />;
-    }
+  const getIcon = (title: string): React.ReactElement => {
+    const t = title.toLowerCase().replace(/[^a-z]/g, "");
+    if (t.includes("language")) return <FaCode size={18} />;
+    if (t.includes("backend")) return <FaCogs size={18} />;
+    if (t.includes("frontend")) return <FaLaptopCode size={18} />;
+    if (t.includes("database")) return <FaDatabase size={18} />;
+    if (t.includes("cloud") || t.includes("devops")) return <FaCloud size={18} />;
+    if (t.includes("tool") || t.includes("practice")) return <FaTools size={18} />;
+    return <FaLayerGroup size={18} />;
   };
 
   return (

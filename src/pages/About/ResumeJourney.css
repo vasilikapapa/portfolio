@@ -304,6 +304,21 @@
   color: var(--rj-muted);
 }
 
+/* role history at one company (e.g. a promotion) */
+.rj-roles {
+  margin: 10px 0 0;
+  padding: 0 0 0 14px;
+  list-style: none;
+  border-left: 2px solid var(--rj-rule);
+  font-size: 0.95rem;
+  color: var(--rj-soft);
+}
+
+.rj-roles li + li {
+  margin-top: 3px;
+  color: var(--rj-muted);
+}
+
 .rj-entry + .rj-entry {
   margin-top: 32px;
 }

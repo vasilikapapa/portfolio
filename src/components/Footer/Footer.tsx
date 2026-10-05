@@ -44,7 +44,7 @@ export default function Footer(): React.ReactElement {
 
         {/* LinkedIn profile */}
         <a
-          href="https://www.linkedin.com/in/vasilikapapa/"
+          href="https://www.linkedin.com/in/vasilika-papa/"
           target="_blank"
           rel="noreferrer"
         >

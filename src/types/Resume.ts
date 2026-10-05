@@ -22,6 +22,8 @@ export type Experience = {
   company: string;
   location: string;
   dates: string;
+  /** Optional role history at the same company, e.g. "Back End Developer Intern · Mar 2024 – Jul 2024". */
+  roles?: string[];
   bullets: string[];
 };
 
@@ -51,6 +53,8 @@ export type ResumeData = {
   role: string;
   location: string;
   email: string;
+  /** Shown on the resume page as a call link. Leave empty to hide. */
+  phone: string;
   github: string;
   linkedin: string;
   /** Link to the downloadable PDF (a path in /public or any URL). Leave empty to hide. */
@@ -58,6 +62,8 @@ export type ResumeData = {
   summary: string;
   skills: SkillGroup[];
   experience: Experience[];
+  /** Non-engineering work, shown in its own section. */
+  additionalExperience: Experience[];
   projects: ResumeProject[];
   education: Education[];
   training: Training[];

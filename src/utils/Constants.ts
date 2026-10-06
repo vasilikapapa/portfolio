@@ -91,6 +91,19 @@ export const projects: Project[] = [
   image: "/images/project-portfolio-tracker.jpg",
   liveUrl: "https://portfolio-roadmap-tracker.vercel.app",
   repoUrl: "https://github.com/vasilikapapa/portfolio-roadmap-tracker"
-}
+},
+
+  {
+    id: "flip-deal-finder",
+    slug: "flip-deal-finder",
+    title: "Flip Deal Finder",
+    subtitle: "Real-estate deal sourcing & ARV tool",
+    description:
+      "A Streamlit app that scans an email inbox for off-market wholesale real estate deals, parsing addresses, price, and property details straight from message text, attachments, and linked pages. Estimates After Repair Value (ARV) from uploaded sold-comp data (Redfin or MLS exports), then surfaces each deal's max offer and spread in a searchable, filterable, sortable table that exports to Excel and links out to Zillow or other marketplaces.",
+    tech: ["Python", "Streamlit", "Pandas", "NumPy", "IMAP (imaplib)", "Requests", "PyYAML"],
+    image: "/images/project-flipdeal.jpg",
+    liveUrl: "https://flip-deal-findergit-atbyqb4vjz2wjvloamtorn.streamlit.app/",
+    repoUrl: "https://github.com/vasilikapapa/flip-deal-finder"
+  }
 
 ];

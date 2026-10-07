@@ -76,6 +76,18 @@ export const defaultResume: ResumeData = {
       ],
     },
     {
+      name: "Job Tracker",
+      kind: "Web Application",
+      tech: ["JavaScript", "Supabase", "PostgreSQL", "SheetJS"],
+      repoUrl: "",
+      liveUrl: "https://job-tracker-tau-rouge.vercel.app/",
+      bullets: [
+        "Built a job application tracker that reads the company and position from a pasted job link and tracks each application from Saved to Offer",
+        "Added email sign-in with Supabase and PostgreSQL row-level security so each user sees only their own applications",
+        "Automated follow-up reminders based on application status, with Excel import and export",
+      ],
+    },
+    {
       name: "Portfolio Roadmap Tracker",
       kind: "Full Stack Application",
       tech: ["Java", "Spring Boot", "React", "TypeScript", "PostgreSQL", "Docker"],

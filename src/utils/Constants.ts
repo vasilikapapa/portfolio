@@ -104,6 +104,19 @@ export const projects: Project[] = [
     image: "/images/project-flipdeal.jpg",
     liveUrl: "https://flip-deal-findergit-atbyqb4vjz2wjvloamtorn.streamlit.app/",
     repoPrivate: true
+  },
+
+  {
+    id: "job-tracker",
+    slug: "job-tracker",
+    title: "Job Tracker",
+    subtitle: "Job application tracker with accounts & Excel import",
+    description:
+      "A web app for keeping every job application in one place. Paste a job link and it reads the company and position from the URL (Greenhouse, Lever, Workday, iCIMS and more), then tracks each application's status from Saved to Offer, sets follow-up reminders automatically, and flags the ones that are due. Each person signs in to their own private list, secured with Supabase row-level security, and can import or download the table as Excel.",
+    tech: ["JavaScript", "HTML", "CSS", "Supabase", "PostgreSQL", "SheetJS"],
+    image: "/images/project-jobtracker.jpg",
+    liveUrl: "https://job-tracker-tau-rouge.vercel.app/",
+    repoPrivate: true
   }
 
 ];

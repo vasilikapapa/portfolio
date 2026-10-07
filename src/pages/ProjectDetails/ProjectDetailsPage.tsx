@@ -7,6 +7,8 @@ import {
   type TaskStatus,
 } from "../../lib/api";
 import "./projectDetails.css";
+import { projects } from "../../utils/Constants";
+import type { Project } from "../../types/Projects";
 
 /**
  * Group tasks into columns by status.
@@ -84,6 +86,12 @@ export default function ProjectDetailsPage(): React.ReactElement {
   const [error, setError] = useState<string | null>(null);
 
   /**
+   * Set when the roadmap backend doesn't have this project and the page
+   * falls back to the project info in src/utils/Constants.ts instead.
+   */
+  const [localProject, setLocalProject] = useState<Project | null>(null);
+
+  /**
    * If the backend takes longer than expected to respond,
    * show an extra message explaining that it may still be waking up.
    */
@@ -108,6 +116,7 @@ export default function ProjectDetailsPage(): React.ReactElement {
 
       setLoading(true);
       setError(null);
+      setLocalProject(null);
 
       try {
         const details = await api.getProjectDetailsBySlug(slug);
@@ -116,7 +125,26 @@ export default function ProjectDetailsPage(): React.ReactElement {
           setData(details);
         }
       } catch (e: any) {
-        if (mounted) {
+        if (!mounted) return;
+
+        // Not tracked in the roadmap backend: show the portfolio's own info instead
+        const local = projects.find((p) => p.slug === slug);
+        if (local) {
+          setLocalProject(local);
+          setData({
+            project: {
+              id: local.id,
+              slug: local.slug,
+              name: local.title,
+              summary: local.subtitle,
+              description: local.description,
+              repoUrl: local.repoUrl ?? null,
+              liveUrl: local.liveUrl ?? null,
+            },
+            tasks: [],
+            updates: [],
+          });
+        } else {
           setError(String(e?.message ?? e));
         }
       } finally {
@@ -416,7 +444,7 @@ export default function ProjectDetailsPage(): React.ReactElement {
              ========================= */}
           <section className="detailsHero">
             <div className="detailsHeroContent">
-              <p className="detailsKicker">PROJECT ROADMAP</p>
+              <p className="detailsKicker">{localProject ? "PROJECT" : "PROJECT ROADMAP"}</p>
 
               <h1 className="detailsTitle">{data.project.name}</h1>
 
@@ -426,6 +454,17 @@ export default function ProjectDetailsPage(): React.ReactElement {
 
               {data.project.description ? (
                 <p className="detailsDescription">{data.project.description}</p>
+              ) : null}
+
+              {localProject && localProject.tech.length > 0 ? (
+                <p className="detailsTech">Built with {localProject.tech.join(", ")}</p>
+              ) : null}
+
+              {localProject?.repoPrivate ? (
+                <p className="detailsTech">
+                  The source code is in a private repository and is available on request.{" "}
+                  <Link to="/contact?form=1">Get in touch</Link> to see it.
+                </p>
               ) : null}
             </div>
 
@@ -455,6 +494,9 @@ export default function ProjectDetailsPage(): React.ReactElement {
             </div>
           </section>
 
+          {/* Roadmap board and updates only exist for projects tracked in the backend */}
+          {!localProject && (
+            <>
           <div className="spacer" />
 
           {/* =========================
@@ -535,6 +577,8 @@ export default function ProjectDetailsPage(): React.ReactElement {
               ) : null}
             </div>
           </section>
+            </>
+          )}
         </>
       )}
     </main>

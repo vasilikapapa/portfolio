@@ -103,7 +103,7 @@ export const projects: Project[] = [
     tech: ["Python", "Streamlit", "Pandas", "NumPy", "IMAP (imaplib)", "Requests", "PyYAML"],
     image: "/images/project-flipdeal.jpg",
     liveUrl: "https://flip-deal-findergit-atbyqb4vjz2wjvloamtorn.streamlit.app/",
-    repoUrl: "https://github.com/vasilikapapa/flip-deal-finder"
+    repoPrivate: true
   }
 
 ];

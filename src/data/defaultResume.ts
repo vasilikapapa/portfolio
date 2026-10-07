@@ -64,6 +64,18 @@ export const defaultResume: ResumeData = {
   ],
   projects: [
     {
+      name: "Flip Deal Finder",
+      kind: "Real-Estate Deal Sourcing Tool",
+      tech: ["Python", "Streamlit", "Pandas", "NumPy", "IMAP"],
+      repoUrl: "",
+      liveUrl: "https://flip-deal-findergit-atbyqb4vjz2wjvloamtorn.streamlit.app/",
+      bullets: [
+        "Built a Streamlit app that scans an email inbox over IMAP for off-market wholesale real estate deals, extracting address, price, and property details from message text, attachments, and linked pages",
+        "Estimates After Repair Value (ARV) from uploaded sold-comp data (Redfin or MLS exports) and calculates each deal's maximum offer and spread",
+        "Presents deals in a searchable, sortable table with Excel export and links out to Zillow and other listing sites",
+      ],
+    },
+    {
       name: "Portfolio Roadmap Tracker",
       kind: "Full Stack Application",
       tech: ["Java", "Spring Boot", "React", "TypeScript", "PostgreSQL", "Docker"],

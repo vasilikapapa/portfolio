@@ -14,6 +14,8 @@ export type Project = {
   slug: string;
 
   repoUrl?: string;
+  /** Source code is in a private repo: shows a "Private repo" label instead of a View Code link. */
+  repoPrivate?: boolean;
   liveUrl?: string;
 
   mobileOnly?: boolean;

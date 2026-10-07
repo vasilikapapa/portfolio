@@ -176,6 +176,21 @@
   box-shadow: none;
 }
 
+/* "Private repo" label: looks like a button slot but isn't clickable */
+.project-actions .btn.private {
+  gap: 6px;
+  cursor: default;
+  background: transparent;
+  border: 1px dashed rgba(148, 163, 184, 0.4);
+  color: rgba(248, 250, 252, 0.7);
+}
+
+.project-actions .btn.private:hover {
+  transform: none;
+  box-shadow: none;
+  background: transparent;
+}
+
 /* =========================
    Mobile-only demo panel (hidden until click)
 ========================= */

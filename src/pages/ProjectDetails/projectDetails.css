@@ -299,3 +299,9 @@
     padding: 9px 14px;
   }
 }
+/* Tech list for projects shown from local portfolio data */
+.detailsTech {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}

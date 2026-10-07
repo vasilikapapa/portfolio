@@ -2,6 +2,7 @@ import "./ProjectCard.css";
 import type { Project } from "../../types/Projects";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Lock } from "lucide-react";
 
 /**
  * Props for ProjectCard
@@ -144,7 +145,15 @@ export default function ProjectCard({ project }: Props): React.ReactElement {
         </div>
 
         <div className="project-actions">
-          {project.repoUrl ? (
+          {project.repoPrivate ? (
+            <span
+              className="btn private"
+              title="The source code is in a private repository. Available on request."
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Lock size={14} aria-hidden /> Private repo
+            </span>
+          ) : project.repoUrl ? (
             <a
               className="btn primary"
               href={project.repoUrl}
